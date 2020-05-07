@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/destino"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/calendar"
+            android:title="@string/menu_slideshow" />
+        <item
+            android:id="@+id/nav_sitios_interes"
+            android:icon="@drawable/sitios_interes"
+            android:title="@string/menu_sitios_interes" />
+        <item
+            android:id="@+id/nav_sitios_recreativos"
+            android:icon="@drawable/sitios_recreativos"
+            android:title="@string/menu_sitios_recreativos" />
+        <item
+            android:id="@+id/nav_actividades"
+            android:icon="@drawable/actividades"
+            android:title="@string/menu_actividades" />
+        <item
+            android:id="@+id/nav_acerca_departamento"
+            android:icon="@drawable/acerca_departamento"
+            android:title="@string/menu_acerca_departamento" />
+
+
+
+    </group>
+</menu>
