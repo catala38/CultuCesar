@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="55dp">
+
+    <TextView
+        android:id="@+id/nombre_detalle"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="6dp"
+        android:gravity="center"
+        android:text="nombre"
+        android:textSize="25sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+    <ViewFlipper
+        android:id="@+id/flipper"
+        android:layout_width="372dp"
+        android:layout_height="181dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="147dp">
+
+    </ViewFlipper>
+
+    <TextView
+
+        android:layout_width="318dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="296dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:text="INFORMACION GENERAL"
+        android:textSize="25sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginBottom="161dp"
+        android:background="@drawable/ubicacion">
+
+    </ImageView>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginBottom="263dp"
+        android:text="UBICACION"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="380dp"
+        android:layout_height="146dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="142dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="405dp">
+
+        <TextView
+            android:id="@+id/infoG"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Informacion general"
+            android:textSize="18dp">
+
+        </TextView>
+
+    </ScrollView>
+
+
+</RelativeLayout>

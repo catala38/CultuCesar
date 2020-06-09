@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Principal">
+        <menu>
+            <item
+                android:id="@+id/home"
+                android:icon="@drawable/home"
+                android:title="Home"/>
+
+            <item
+                android:id="@+id/personas"
+                android:icon="@drawable/destino"
+                android:title="Destinos"/>
+
+            <item
+                android:id="@+id/home2"
+                android:icon="@drawable/calendar"
+                android:title="Eventos Culturales"/>
+
+            <item
+                android:id="@+id/sitios_interes"
+                android:icon="@drawable/sitios_interes"
+                android:title="Sitios de interes"/>
+
+            <item
+                android:id="@+id/sitios_recreativoss"
+                android:icon="@drawable/sitios_recreativos"
+                android:title="Sitios Recreativos"/>
+
+            <item
+                android:id="@+id/actividades"
+                android:icon="@drawable/actividades"
+                android:title="Actividades"/>
+            <item
+                android:id="@+id/acerca_departamento"
+                android:icon="@drawable/acerca_departamento"
+                android:title="Acerca del Departamento"/>
+
+
+
+
+
+        </menu>
+    </item>
+</menu>
