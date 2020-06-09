@@ -30,7 +30,7 @@ public class AdapterDestinos extends RecyclerView.Adapter<AdapterDestinos.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.lista_eventos, parent, false);
+        View view = inflater.inflate(R.layout.lista_destinos, parent, false);
         view.setOnClickListener(this);
         return new ViewHolder(view);
     }
