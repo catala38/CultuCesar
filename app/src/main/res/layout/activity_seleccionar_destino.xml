@@ -14,29 +14,33 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="49dp"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="21dp"
         android:text="SELECCIONE EL MUNICIPIO QUE DESEA VISITAR" />
 
     <ImageButton
         android:id="@+id/imageButtonValledupar"
-        android:layout_width="261dp"
-        android:layout_height="166dp"
+        android:layout_width="253dp"
+        android:layout_height="175dp"
         android:layout_above="@+id/imageButtonManaure"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="83dp"
-        android:layout_marginBottom="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="41dp"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/valledupar1" />
 
     <ImageButton
         android:id="@+id/imageButtonManaure"
-        android:layout_width="261dp"
-        android:layout_height="166dp"
+        android:layout_width="246dp"
+        android:layout_height="190dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="83dp"
-        android:layout_marginBottom="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="144dp"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/manaure1" />
 
 </RelativeLayout>
