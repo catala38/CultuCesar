@@ -42,6 +42,27 @@ public class CultuCesarContract {
     public static String IMG_DETALLE_RECREATIVO3_INTERES = "imageDetalleS3Interes";
 
 
+    //CONTRACT ACTIVIDADES
+    public static String TABLA_ACTIVIDAD = "actividades";
+    public static String CODIGO_ACTIVIDAD = "codigo";
+    public static String MUNICIPIO_ACTIVIDAD = "municipio";
+    public static String NOMBRE_ACTIVIDAD = "nombreActividad";
+    public static String INFO_ACTIVIDAD = "infoG";
+    public static String DETALLE_ACTIVIDAD = "detalleActividad";
+    public static String FOTO_ACTIVIDAD= "foto";
+    public static String IMG_DETALLE_ACTIVIDAD = "imageDetalle";
+
+    //CONTRACT MUNUCIPIO DETALLE(JUNGLARES,HISTORIA,LEYENDAS)
+    public static String TABLA_DETALLE_M = "actividades";
+    public static String CODIGO_DETALLE_M = "codigo";
+    public static String MUNICIPIO_DETALLE_M = "municipio";
+    public static String NOMBRE_DETALLE_M = "nombreDetalleM";
+    public static String INFO_DETALLE_M = "infoGM";
+    public static String DESCRIPCION_DETALLE_M = "descripcionDetalleM";
+    public static String FOTO_DETALLE_M= "fotoDetalleM";
+    public static String IMG_DETALLE_M = "imageDetalleM";
+
+
     //CREAR TABLA EVENTO
     public static final  String CREAR_TABLA_EVENTO="CREATE TABLE" + " " + TABLA_EVENTO + " " +
             "(" +CODIGO_EVENTO+" "+ "INTEGER,"+ MUNICIPIO_EVENTO+" " +" TEXT," +  NOMBRE_EVENTO+" " +" TEXT,"+ INFO_EVENTO+" " +" TEXT,"+
@@ -59,6 +80,15 @@ public class CultuCesarContract {
             "(" +CODIGO_SITIO_RECREATIVO+" "+ "INTEGER,"+ TIPO_SITIO_RECREATIVO + " "+" TEXT,"+ MUNICIPIO_SITIO_RECREATIVO+" " +" TEXT," +  NOMBRE_SITIO_RECREATIVO+" " +" TEXT,"+ INFO_SITIO_RECREATIVO+" " +" TEXT,"
             + DETALLE_SITIO_RECREATIVO+" " +" TEXT," + IMG_DETALLE_RECREATIVO1_INTERES+" "+ "INTEGER,"+ IMG_DETALLE_RECREATIVO2_INTERES +" "+ "INTEGER,"+IMG_DETALLE_RECREATIVO3_INTERES+" "+ "INTEGER)";
 
+    //CREAR TABLA ACTIVIDAD
+    public static final  String CREAR_TABLA_ACTIVIDAD="CREATE TABLE" +
+            " " + TABLA_ACTIVIDAD + " (" +CODIGO_ACTIVIDAD+" "+
+            "INTEGER,"+ MUNICIPIO_ACTIVIDAD+" " +" TEXT," +  NOMBRE_ACTIVIDAD+" " +" TEXT,"+ INFO_ACTIVIDAD+" " +" TEXT,"+ DETALLE_ACTIVIDAD+" " +" TEXT,"
+            + FOTO_ACTIVIDAD+" " +" INTEGER,"+IMG_DETALLE_ACTIVIDAD+" "+ "INTEGER,)";
 
-
+    //CREAR TABLA DETALLE MUNICIPIO
+    public static final  String CREAR_TABLA_DETALLE_M="CREATE TABLE" +
+            " " + TABLA_DETALLE_M + " (" +CODIGO_DETALLE_M+" "+
+            "INTEGER,"+ MUNICIPIO_DETALLE_M+" " +" TEXT," +  NOMBRE_DETALLE_M+" " +" TEXT,"+ INFO_DETALLE_M+" " +" TEXT,"+ DESCRIPCION_DETALLE_M+" " +" TEXT,"
+            + FOTO_DETALLE_M+" " +" INTEGER,"+IMG_DETALLE_M+" "+ "INTEGER,)";
 }
