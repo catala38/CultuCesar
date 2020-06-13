@@ -40,10 +40,10 @@ public class DestinosFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.destino_fragment,container,false);
-        txtnombre = view.findViewById(R.id.txtnombre);
+        View view = inflater.inflate(R.layout.evento_fragment,container,false);
+       // txtnombre = view.findViewById(R.id.txtnombre);
 
-        recyclerViewPersonas = view.findViewById(R.id.recyclerView);
+       // recyclerViewPersonas = view.findViewById(R.id.recyclerView);
         listaDestinos = new ArrayList<>();
         cargarLista();
         mostrarData();
@@ -89,13 +89,6 @@ public class DestinosFragment extends Fragment {
             interfaceComunicaFragments= (iComunicaFragments) this.actividad;
             //esto es necesario para establecer la comunicacion entre la lista y el detalle
         }
-
-       /* if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
     }
 
     @Override

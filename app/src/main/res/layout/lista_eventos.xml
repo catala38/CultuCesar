@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
     <ImageView
-        android:id="@+id/imagen_destino"
+        android:id="@+id/imagen_evento"
         android:layout_width="180dp"
         android:layout_height="150dp"
         android:layout_marginRight="10dp"
@@ -22,27 +22,26 @@
     </ImageView>
 
         <TextView
-            android:id="@+id/idNombre"
+            android:id="@+id/nombreEvento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/imagen_destino"
-            android:layout_toRightOf="@id/imagen_destino"
+            android:layout_toEndOf="@+id/imagen_evento"
+            android:layout_toRightOf="@+id/imagen_evento"
             android:text="Nombre del evento"
             android:textSize="18sp"
             android:textStyle="bold"></TextView>
 
-    <TextView
-        android:id="@+id/idInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2020-01-20"
-        android:layout_toRightOf="@id/imagen_destino"
-        android:layout_toEndOf="@id/imagen_destino"
-        android:layout_below="@+id/idNombre"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp">
-    </TextView>
+        <TextView
+            android:id="@+id/fechaEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nombreEvento"
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="22dp"
+            android:layout_toEndOf="@id/imagen_evento"
+            android:layout_toRightOf="@+id/imagen_evento"
+            android:text="2020-01-20"></TextView>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

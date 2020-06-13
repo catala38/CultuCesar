@@ -9,12 +9,12 @@
                 android:title="Home"/>
 
             <item
-                android:id="@+id/personas"
+                android:id="@+id/destinos"
                 android:icon="@drawable/destino"
                 android:title="Destinos"/>
 
             <item
-                android:id="@+id/home2"
+                android:id="@+id/eventos_culturales"
                 android:icon="@drawable/calendar"
                 android:title="Eventos Culturales"/>
 
@@ -36,9 +36,6 @@
                 android:id="@+id/acerca_departamento"
                 android:icon="@drawable/acerca_departamento"
                 android:title="Acerca del Departamento"/>
-
-
-
 
 
         </menu>

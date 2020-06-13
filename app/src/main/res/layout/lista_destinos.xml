@@ -17,7 +17,8 @@
         android:layout_height="150dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:scaleType="centerCrop">
+        android:scaleType="centerCrop"
+        android:src="@drawable/gohan_cara1">
 
     </ImageView>
 
@@ -31,7 +32,9 @@
             android:layout_toRightOf="@id/imagen_destino"
             android:text="Nombre del evento"
             android:textSize="18sp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold">
+
+        </TextView>
 
     <TextView
         android:id="@+id/idInfo"

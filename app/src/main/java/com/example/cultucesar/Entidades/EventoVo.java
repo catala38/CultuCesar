@@ -10,9 +10,9 @@ public class EventoVo {
     private  String valorEvento;
     private  String telefonoEvento;
     private  String sitioWeb;
-    private  int foto;
+    private  int imagen;
 
-    public EventoVo(int codigo, String municipio, String nombreEvento, String infoGeneral, String fechaEvento, String valorEvento, String telefonoEvento, String sitioWeb, int foto) {
+    public EventoVo(int codigo, String municipio, String nombreEvento, String infoGeneral, String fechaEvento, String valorEvento, String telefonoEvento, String sitioWeb, int imagen) {
         this.codigo = codigo;
         this.municipio = municipio;
         this.nombreEvento = nombreEvento;
@@ -21,7 +21,7 @@ public class EventoVo {
         this.valorEvento = valorEvento;
         this.telefonoEvento = telefonoEvento;
         this.sitioWeb = sitioWeb;
-        this.foto = foto;
+        this.imagen = imagen;
     }
 
     public EventoVo(){}
@@ -90,11 +90,11 @@ public class EventoVo {
         this.sitioWeb = sitioWeb;
     }
 
-    public int getFoto() {
-        return foto;
+    public int getImagen() {
+        return imagen;
     }
 
-    public void setFoto(int foto) {
-        this.foto = foto;
+    public void setImagen(int imagen) {
+        this.imagen = imagen;
     }
 }

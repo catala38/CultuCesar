@@ -19,7 +19,6 @@ public class AdapterDestinos extends RecyclerView.Adapter<AdapterDestinos.ViewHo
 
     LayoutInflater inflater;
     ArrayList<DestinosVo> model;
-
     private View.OnClickListener listener;
 
     public AdapterDestinos(Context context, ArrayList<DestinosVo> model){
