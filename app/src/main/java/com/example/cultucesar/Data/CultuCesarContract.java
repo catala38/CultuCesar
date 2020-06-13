@@ -37,9 +37,9 @@ public class CultuCesarContract {
     public static String NOMBRE_SITIO_RECREATIVO = "nombre";
     public static String INFO_SITIO_RECREATIVO = "infoSitioRecreativo";
     public static String DETALLE_SITIO_RECREATIVO = "detalleSitioRecreativo";
-    public static String IMG_DETALLE_RECREATIVO1_INTERES = "imageDetalleS1Interes";
-    public static String IMG_DETALLE_RECREATIVO2_INTERES = "imageDetalleS2Interes";
-    public static String IMG_DETALLE_RECREATIVO3_INTERES = "imageDetalleS3Interes";
+    public static String IMG_DETALLE_RECREATIVO1 = "imageDetalleS1Recreativo";
+    public static String IMG_DETALLE_RECREATIVO2 = "imageDetalleS2Recreativo";
+    public static String IMG_DETALLE_RECREATIVO3 = "imageDetalleS3Recreativo";
 
 
     //CONTRACT ACTIVIDADES
@@ -78,7 +78,7 @@ public class CultuCesarContract {
     //CREAR TABLA SITIO RECREATIVO
     public static final  String CREAR_TABLA_SITIO_RECREATIVO="CREATE TABLE" + " " + TABLA_SITIO_RECREATIVO + " " +
             "(" +CODIGO_SITIO_RECREATIVO+" "+ "INTEGER,"+ TIPO_SITIO_RECREATIVO + " "+" TEXT,"+ MUNICIPIO_SITIO_RECREATIVO+" " +" TEXT," +  NOMBRE_SITIO_RECREATIVO+" " +" TEXT,"+ INFO_SITIO_RECREATIVO+" " +" TEXT,"
-            + DETALLE_SITIO_RECREATIVO+" " +" TEXT," + IMG_DETALLE_RECREATIVO1_INTERES+" "+ "INTEGER,"+ IMG_DETALLE_RECREATIVO2_INTERES +" "+ "INTEGER,"+IMG_DETALLE_RECREATIVO3_INTERES+" "+ "INTEGER)";
+            + DETALLE_SITIO_RECREATIVO+" " +" TEXT," + IMG_DETALLE_RECREATIVO1 +" "+ "INTEGER,"+ IMG_DETALLE_RECREATIVO2 +" "+ "INTEGER,"+ IMG_DETALLE_RECREATIVO3 +" "+ "INTEGER)";
 
     //CREAR TABLA ACTIVIDAD
     public static final  String CREAR_TABLA_ACTIVIDAD="CREATE TABLE" +

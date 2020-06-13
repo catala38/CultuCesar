@@ -30,7 +30,6 @@ public class EventosFragment extends Fragment {
     RecyclerView recyclerEvento;
     ConexionSQLiteEventoHelper conn;
     ArrayList<EventoVo> listaEventoVo;
-    TextView textobuscado;
 
 
     @Nullable
