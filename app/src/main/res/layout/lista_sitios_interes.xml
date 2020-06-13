@@ -11,41 +11,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
-    <ImageView
-        android:id="@+id/imagen_evento"
-        android:layout_width="180dp"
-        android:layout_height="150dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:scaleType="centerCrop">
 
-    </ImageView>
+        <ImageView
+            android:id="@+id/imagen_sitioInteres"
+            android:layout_width="180dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop">
+
+        </ImageView>
 
         <TextView
-            android:id="@+id/nombreEvento"
+            android:id="@+id/nombreSitioInteres"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/imagen_evento"
-            android:layout_toRightOf="@+id/imagen_evento"
-            android:text="Nombre del evento"
+            android:layout_toEndOf="@+id/imagen_sitioInteres"
+            android:layout_toRightOf="@+id/imagen_sitioInteres"
+            android:text="Nombre del sitio de interes"
             android:textSize="18sp"
             android:textStyle="bold">
 
         </TextView>
 
         <TextView
-            android:id="@+id/fechaEvento"
+            android:id="@+id/valorSitioInteres"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/nombreEvento"
+            android:layout_below="@+id/nombreSitioInteres"
             android:layout_marginStart="22dp"
             android:layout_marginLeft="22dp"
-            android:layout_toEndOf="@id/imagen_evento"
-            android:layout_toRightOf="@+id/imagen_evento"
-            android:text="2020-01-20">
+            android:layout_toEndOf="@id/imagen_sitioInteres"
+            android:layout_toRightOf="@+id/imagen_sitioInteres"
+            android:text="$70.000-$140.000">
 
         </TextView>
+
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

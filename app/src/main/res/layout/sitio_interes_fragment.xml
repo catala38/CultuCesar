@@ -15,13 +15,13 @@
         android:textStyle="bold" />
 
     <Spinner
-        android:id="@+id/idSpinnerTipo"
+        android:id="@+id/idSpinnerTipoSitioInteres"
         android:layout_width="170dp"
         android:layout_height="34dp" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewSitios"
+        android:id="@+id/recyclerViewSitiosInteres"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -13,7 +13,7 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/imagen_sitio"
+            android:id="@+id/imagen_sitioRecreativo"
             android:layout_width="180dp"
             android:layout_height="150dp"
             android:layout_marginLeft="10dp"
@@ -23,18 +23,19 @@
         </ImageView>
 
         <TextView
-            android:id="@+id/nombreSitio"
+            android:id="@+id/nombreSitioRecreativo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="22dp"
             android:layout_marginLeft="22dp"
             android:layout_marginTop="47dp"
-            android:layout_toEndOf="@+id/imagen_sitio"
-            android:layout_toRightOf="@+id/imagen_sitio"
-            android:text="Nombre del sitio"
+            android:layout_toEndOf="@+id/imagen_sitioRecreativo"
+            android:layout_toRightOf="@+id/imagen_sitioRecreativo"
+            android:text="Nombre del sitio de recreativo"
             android:textSize="18sp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold">
+        </TextView>
 
 
     </RelativeLayout>
