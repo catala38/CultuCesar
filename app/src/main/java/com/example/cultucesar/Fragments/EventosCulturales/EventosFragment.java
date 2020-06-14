@@ -1,4 +1,6 @@
 package com.example.cultucesar.Fragments.EventosCulturales;
+import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cultucesar.Adaptadores.AdapterEventosCulturales;
 import com.example.cultucesar.Data.ConexionSQLiteEventoHelper;
 import com.example.cultucesar.Entidades.EventoVo;
+import com.example.cultucesar.Interfaces.iComunicaFragments;
 import com.example.cultucesar.R;
 import com.example.cultucesar.seleccionar_destino;
 
@@ -30,6 +33,11 @@ public class EventosFragment extends Fragment {
     RecyclerView recyclerEvento;
     ConexionSQLiteEventoHelper conn;
     ArrayList<EventoVo> listaEventoVo;
+
+    //Crear referencias para poder realizar la comunicacion entre el fragment detalle
+    Activity actividad;
+    iComunicaFragments interfaceComunicaFragments;
+
 
 
     @Nullable
@@ -79,8 +87,29 @@ public class EventosFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Seleccionó: "+ listaEventoVo.get(recyclerEvento.getChildAdapterPosition(view)).getNombreEvento(), Toast.LENGTH_SHORT).show();
+                interfaceComunicaFragments.enviarEventoCultural(listaEventoVo.get(recyclerEvento.getChildAdapterPosition(view)));
+
             }
         });
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        //esto es necesario para establecer la comunicacion entre la lista y el detalle
+        //si el contexto que le esta llegando es una instancia de un activity:
+        if(context instanceof Activity){
+            //voy a decirle a mi actividad que sea igual a dicho contesto. castin correspondiente:
+            this.actividad= (Activity) context;
+            ////que la interface icomunicafragments sea igual ese contexto de la actividad:
+            interfaceComunicaFragments= (iComunicaFragments) this.actividad;
+            //esto es necesario para establecer la comunicacion entre la lista y el detalle
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 
 }

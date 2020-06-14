@@ -40,8 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nombreEvento"
-            android:layout_marginStart="22dp"
             android:layout_marginLeft="22dp"
+            android:layout_marginTop="24dp"
             android:layout_toEndOf="@id/imagen_evento"
             android:layout_toRightOf="@+id/imagen_evento"
             android:text="2020-01-20">

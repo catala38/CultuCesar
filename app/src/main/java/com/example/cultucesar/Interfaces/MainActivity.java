@@ -22,7 +22,9 @@ import com.example.cultucesar.Data.ConexionSQLiteSitiosInteresHelper;
 import com.example.cultucesar.Data.ConexionSQLiteSitiosRecreativoHelper;
 import com.example.cultucesar.Data.CultuCesarContract;
 import com.example.cultucesar.Entidades.DestinosVo;
+import com.example.cultucesar.Entidades.EventoVo;
 import com.example.cultucesar.Fragments.DetalleDestinoFragment;
+import com.example.cultucesar.Fragments.EventosCulturales.DetalleEventoFragment;
 import com.example.cultucesar.Fragments.EventosCulturales.EventosFragment;
 import com.example.cultucesar.Fragments.MainFragment;
 import com.example.cultucesar.Fragments.DestinosFragment;
@@ -40,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
-
     ConexionSQLiteEventoHelper GuardarEvento;
     ConexionSQLiteSitiosInteresHelper GuardarSitioInteres;
     ConexionSQLiteSitiosRecreativoHelper GuardarSitioRecreativo;
@@ -48,11 +49,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ConexionSQLiteDetalleMunicipioHelper GuardarDetalleM;
 
 
-
-
-
     //variable del fragment detalle
     DetalleDestinoFragment detalleDestinoFragment;
+    DetalleEventoFragment detalleEventoFragment;
 
 
 
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
+   //----ENVIO A INTERFACES DETALLE--------------
     @Override
     public void enviarDestinos(DestinosVo destinosVo) {
 
@@ -164,11 +163,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    @Override
+    public void enviarEventoCultural(EventoVo eventoVo) {
+        detalleEventoFragment = new DetalleEventoFragment();
+        Bundle bundleEnvio = new Bundle();
+        bundleEnvio.putSerializable("objeto", eventoVo);
+        detalleEventoFragment.setArguments(bundleEnvio);
+
+        //CArgar fragment en el activity
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container_fragment, detalleEventoFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+
     //---- Cargar EventosCulturales ------
 
     public void CargarEventos(){
-
         festivalVallenato();
+        festivalDeLaQuinta();
     }
 
     public void festivalVallenato(){
@@ -176,16 +191,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ContentValues values =  new ContentValues();
         values.put(CultuCesarContract.CODIGO_EVENTO,1);
         values.put(CultuCesarContract.MUNICIPIO_EVENTO,"Valledupar");
-        values.put(CultuCesarContract.NOMBRE_EVENTO,"Festival vallenato 2020");
-        values.put(CultuCesarContract.INFO_EVENTO,"se jodio por la cuarentena");
+        values.put(CultuCesarContract.NOMBRE_EVENTO,"53 Festival de la Leyenda Vallenata");
+        values.put(CultuCesarContract.INFO_EVENTO,"En 1968, tres personas pensaron que era hora de hacer algo para que todo ese acervo cultural y musical no desapareciera en las nebulosas del tiempo, y decidieron crear el Festival de La Leyenda Vallenata para recrear toda la magia de una tierra donde los mitos, las costumbres, las propias vivencias y una riqueza lingüística y oral nutren día por día la literatura y el pentagrama donde se tejen las letras y las melodías del vallenato.");
         values.put(CultuCesarContract.FECHA_EVENTO,"Del 28/04/2020 al 01/05/2020");
         values.put(CultuCesarContract.VALOR_ESTIMADO,"Desde $0 hasta $0");
         values.put(CultuCesarContract.TELEFONO,"+57 3157463143");
-        values.put(CultuCesarContract.WEB,"Clic para ir al sitio web");
+        values.put(CultuCesarContract.WEB,"https://festivalvallenato.com");
         values.put(CultuCesarContract.FOTO_EVENTO,R.drawable.valledupar);
 
         db.insert(CultuCesarContract.TABLA_EVENTO,null,values);
     }
+
+    public void festivalDeLaQuinta(){
+        SQLiteDatabase db = GuardarEvento.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_EVENTO,2);
+        values.put(CultuCesarContract.MUNICIPIO_EVENTO,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_EVENTO,"FESTIVAL DE LA QUINTA");
+        values.put(CultuCesarContract.INFO_EVENTO,"EL FESTIVAL DE LA QUINTA es una iniciativa de un grupo de empresarios y gestores culturales del centro histórico de la ciudad de Valledupar. Quienes buscamos generar espacios culturales independientes, Incentivar el talento local y las nuevas generaciones de talentos en otras áreas y expresiones culturales que permitan aumentar la oferta de estas en la Ciudad.");
+        values.put(CultuCesarContract.FECHA_EVENTO,"Del 17/08/2020 al 18/08/2020");
+        values.put(CultuCesarContract.VALOR_ESTIMADO,"Desde $0 hasta $50.000");
+        values.put(CultuCesarContract.TELEFONO,"No disponible");
+        values.put(CultuCesarContract.WEB,"https://www.festivaldelaquinta.com/");
+        values.put(CultuCesarContract.FOTO_EVENTO,R.drawable.valledupar);
+
+        db.insert(CultuCesarContract.TABLA_EVENTO,null,values);
+    }
+
+
 
     //------- Cargar Sitios de interes ----------
 
@@ -240,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
         values.put(CultuCesarContract.CODIGO_SITIO_INTERES,3);
-        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES ");
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"Tierra de cantores");
         values.put(CultuCesarContract.INFO_SITIO_INTERES,"se jodio por la cuarentena");
