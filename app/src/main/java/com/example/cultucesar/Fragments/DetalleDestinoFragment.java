@@ -19,10 +19,13 @@ public class DetalleDestinoFragment extends Fragment {
     TextView nombre,infoG;
     ViewFlipper viewFlipper;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      int imagenes[]={R.drawable.valledupar1,R.drawable.valledupar2,R.drawable.valledupar3};
+      int imagenes[]={Integer.parseInt(String.valueOf(R.drawable.valledupar1)),Integer.parseInt(String.valueOf(R.drawable.valledupar2)),Integer.parseInt(String.valueOf(R.drawable.valledupar3))};
+
+
 
         View view = inflater.inflate(R.layout.destino_valledupar_fragment,container,false);
         nombre = view.findViewById(R.id.nombre_detalle);
@@ -36,6 +39,7 @@ public class DetalleDestinoFragment extends Fragment {
             destinosVo = (DestinosVo) objetoPersona.getSerializable("objeto");
             nombre.setText(destinosVo.getNombre());
             infoG.setText(destinosVo.getInfoG());
+
         }
 
         //Slider de imagenes

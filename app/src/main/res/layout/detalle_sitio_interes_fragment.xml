@@ -31,8 +31,7 @@
                 android:layout_width="354dp"
                 android:layout_height="216dp"
                 android:layout_gravity="center"
-                android:scaleType="fitXY"
-                android:background="@drawable/ic_launcher_background">
+                android:scaleType="fitXY">
             </ViewFlipper>
 
             <TextView

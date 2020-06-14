@@ -23,11 +23,13 @@ import com.example.cultucesar.Data.ConexionSQLiteSitiosRecreativoHelper;
 import com.example.cultucesar.Data.CultuCesarContract;
 import com.example.cultucesar.Entidades.DestinosVo;
 import com.example.cultucesar.Entidades.EventoVo;
+import com.example.cultucesar.Entidades.SitioInteresVo;
 import com.example.cultucesar.Fragments.DetalleDestinoFragment;
 import com.example.cultucesar.Fragments.EventosCulturales.DetalleEventoFragment;
 import com.example.cultucesar.Fragments.EventosCulturales.EventosFragment;
 import com.example.cultucesar.Fragments.MainFragment;
 import com.example.cultucesar.Fragments.DestinosFragment;
+import com.example.cultucesar.Fragments.SitioInteres.DetalleSitioInteresFragment;
 import com.example.cultucesar.Fragments.SitioInteres.SitioInteresFragment;
 import com.example.cultucesar.R;
 import com.google.android.material.navigation.NavigationView;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //variable del fragment detalle
     DetalleDestinoFragment detalleDestinoFragment;
     DetalleEventoFragment detalleEventoFragment;
+    DetalleSitioInteresFragment detalleSitioInteresFragment;
 
 
 
@@ -178,6 +181,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void enviarSitioInteres(SitioInteresVo sitioInteresVo) {
+        detalleSitioInteresFragment = new DetalleSitioInteresFragment();
+        Bundle bundleEnvio = new Bundle();
+        bundleEnvio.putSerializable("objeto", sitioInteresVo);
+        detalleSitioInteresFragment.setArguments(bundleEnvio);
+
+        //CArgar fragment en el activity
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container_fragment, detalleSitioInteresFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
 
     //---- Cargar EventosCulturales ------
 
@@ -243,9 +261,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+57 3157463143");
         values.put(CultuCesarContract.WEB_SITIO_INTERES ,"Clic para ir al sitio web");
         values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.gohan_cara1);
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar1);
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar2);
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar3);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.valledupar1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.valledupar2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.valledupar3);
 
         db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
     }
@@ -262,9 +280,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+57 3157463143");
         values.put(CultuCesarContract.WEB_SITIO_INTERES ,"Clic para ir al sitio web");
         values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.goku_cara2);
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar2);
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar1);
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar3);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.valledupar2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.valledupar1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.valledupar3);
 
         db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
     }
@@ -281,9 +299,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+57 3157463143");
         values.put(CultuCesarContract.WEB_SITIO_INTERES ,"Clic para ir al sitio web");
         values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.gohan_cara1);
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar3);
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar2);
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES,R.drawable.valledupar3);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES  ,R.drawable.valledupar2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES  ,R.drawable.valledupar1);
 
         db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
     }
