@@ -23,9 +23,9 @@ public class AdapterSitioInteres extends RecyclerView.Adapter<AdapterSitioIntere
     private View.OnClickListener listener;
 
 
-    public AdapterSitioInteres(ArrayList<SitioInteresVo> sitioInteresVo,Context context) {
-        this.sitioInteresVo = sitioInteresVo;
+    public AdapterSitioInteres(Context context ,ArrayList<SitioInteresVo> sitioInteresVo) {
         this.inflater = LayoutInflater.from(context);
+        this.sitioInteresVo = sitioInteresVo;
     }
 
     @Override

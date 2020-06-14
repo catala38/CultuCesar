@@ -2,8 +2,8 @@
 <resources>
    <string-array name="comboTipoSitioInteres" >
        <item>SELECCIONAR</item>
-       <item>HOTELES</item>
-       <item>RESTAURANTES</item>
+       <item>HOTEL</item>
+       <item>RESTAURANTE</item>
        <item>BARES</item>
    </string-array>
 

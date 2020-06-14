@@ -15,13 +15,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.cultucesar.Data.ConexionSQLiteActividadHelper;
+import com.example.cultucesar.Data.ConexionSQLiteDetalleMunicipioHelper;
 import com.example.cultucesar.Data.ConexionSQLiteEventoHelper;
+import com.example.cultucesar.Data.ConexionSQLiteSitiosInteresHelper;
+import com.example.cultucesar.Data.ConexionSQLiteSitiosRecreativoHelper;
 import com.example.cultucesar.Data.CultuCesarContract;
 import com.example.cultucesar.Entidades.DestinosVo;
 import com.example.cultucesar.Fragments.DetalleDestinoFragment;
 import com.example.cultucesar.Fragments.EventosCulturales.EventosFragment;
 import com.example.cultucesar.Fragments.MainFragment;
 import com.example.cultucesar.Fragments.DestinosFragment;
+import com.example.cultucesar.Fragments.SitioInteres.SitioInteresFragment;
 import com.example.cultucesar.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -37,6 +42,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     ConexionSQLiteEventoHelper GuardarEvento;
+    ConexionSQLiteSitiosInteresHelper GuardarSitioInteres;
+    ConexionSQLiteSitiosRecreativoHelper GuardarSitioRecreativo;
+    ConexionSQLiteActividadHelper GuardarActividades;
+    ConexionSQLiteDetalleMunicipioHelper GuardarDetalleM;
+
+
+
 
 
     //variable del fragment detalle
@@ -77,9 +89,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setItemIconTintList(null);
 
         getApplicationContext().deleteDatabase("eventos");
+        getApplicationContext().deleteDatabase("sitiosInteres");
 
         GuardarEvento = new ConexionSQLiteEventoHelper(this,"eventos",null,1);
         CargarEventos();
+
+        GuardarSitioInteres = new ConexionSQLiteSitiosInteresHelper(this,"sitiosInteres",null,1);
+        CargarSitioInteres();
     }
 
     protected void onDestroy() {
@@ -108,6 +124,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.replace(R.id.container_fragment, new EventosFragment());
             fragmentTransaction.commit();
         }
+        if(menuItem.getItemId() == R.id.sitios_interes) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, new SitioInteresFragment());
+            fragmentTransaction.commit();
+        }
+        if(menuItem.getItemId() == R.id.sitios_recreativoss) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, new EventosFragment());
+            fragmentTransaction.commit();
+        }
+        if(menuItem.getItemId() == R.id.actividades) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, new EventosFragment());
+            fragmentTransaction.commit();
+        }
         return false;
     }
 
@@ -130,12 +164,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-
-    //---- Cargar actividades ------
-
+    //---- Cargar EventosCulturales ------
 
     public void CargarEventos(){
+
         festivalVallenato();
     }
 
@@ -154,6 +186,82 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         db.insert(CultuCesarContract.TABLA_EVENTO,null,values);
     }
+
+    //------- Cargar Sitios de interes ----------
+
+    public void CargarSitioInteres(){
+        //HOTELES
+        GuardarHotelBoutique();
+        //RESTAURANTES
+        GuardarRestauranteCH();
+        //BARES
+        GuardarTierraCantores();
+    }
+
+    public void GuardarHotelBoutique(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,1);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"HOTEL");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"CASA DE LOS SANTOS REYES");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"se jodio por la cuarentena");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $0 hasta $0");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+57 3157463143");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"Clic para ir al sitio web");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.gohan_cara1);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar1);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar2);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+    public void GuardarRestauranteCH(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,2);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"RESTAURANTE");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"Compa chipuco");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"se jodio por la cuarentena");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $0 hasta $0");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+57 3157463143");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"Clic para ir al sitio web");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.goku_cara2);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar2);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar1);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+    public void GuardarTierraCantores(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,3);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES ");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"Tierra de cantores");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"se jodio por la cuarentena");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $0 hasta $0");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+57 3157463143");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"Clic para ir al sitio web");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.gohan_cara1);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar3);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar2);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.valledupar1);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+
+
+
+
+
+
+
 
 
 }
