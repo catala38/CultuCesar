@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/imagen_sitioInteres"
-            android:layout_width="180dp"
+            android:layout_width="175dp"
             android:layout_height="150dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -26,13 +26,14 @@
             android:id="@+id/nombreSitioInteres"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/imagen_sitioInteres"
             android:layout_toRightOf="@+id/imagen_sitioInteres"
             android:text="Nombre del sitio de interes"
-            android:textSize="18sp"
+            android:textSize="16dp"
             android:textStyle="bold">
 
         </TextView>
@@ -42,8 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nombreSitioInteres"
-            android:layout_marginStart="22dp"
             android:layout_marginLeft="22dp"
+            android:layout_marginTop="21dp"
             android:layout_toEndOf="@id/imagen_sitioInteres"
             android:layout_toRightOf="@+id/imagen_sitioInteres"
             android:text="$70.000-$140.000">
