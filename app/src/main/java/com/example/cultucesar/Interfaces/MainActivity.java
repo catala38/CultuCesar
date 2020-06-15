@@ -248,8 +248,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         GuardarHotelReyReyes();
         //RESTAURANTES
         GuardarRestauranteCH();
+        GuardarRestauranteVaradero();
+        GuardarRestauranteMarianamen();
+        GuardarRestauranteMontacarga();
         //BARES
         GuardarTierraCantores();
+        GuardarPatioBar();
+        GuardarTlonBar();
+        GuardarPalenke();
     }
       /////////////////////// HOTELES ///////////////////////////////////////////////////
     public void GuardarHotelBoutique(){
@@ -363,13 +369,77 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $10,000 hasta $25,000");
         values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"5805635");
         values.put(CultuCesarContract.WEB_SITIO_INTERES ,"http://www.compaechipucorestobar.com/");
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.goku_cara2);
-        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.valledupar2);
-        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.valledupar1);
-        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.valledupar3);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.compaechipuco1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.compaechipuco1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.compaechipuco2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.compaechipuco3);
 
         db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
     }
+
+    public void GuardarRestauranteVaradero(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,2);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"RESTAURANTE");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"RESTAURANTE VARADERO");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"Disfruta de una excelente comida de mar, con un agradable ambiente caribeño. Ubicado en un exclusivo sector de Valledupar, con parqueadero privado.\n" +
+                "Calle 12 # 6 - 56");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $27,000 hasta $80,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"3176678861");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.instagram.com/varaderorestaurante/");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.varaderodetalle);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.varadero1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.varadero2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.varadero3 );
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+    public void GuardarRestauranteMarianamen(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,2);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"RESTAURANTE");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"RESTAURANTE MARIA NAMEN");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"MARIA NAMEN es un Restaurante representativo en el Valle de Upar. Su nombre esta ligado al folclor y la buena comida de la región.\n" +
+                "Calle 6 #9-64");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $10,000 hasta $30,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"5838837-3206373534");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.instagram.com/restaurantemarianamen/");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.marianamendetalle);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.marianamen1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.marianamen2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.marianamen3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+    public void GuardarRestauranteMontacarga(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,2);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"RESTAURANTE");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"RESTAURANTE MONTACARGA");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"Comida típica colombiana, con el sazón más especial y una gran relación precio/sabor.\n" +
+                "\n" +
+                "Carrera 19 # 5 - 30");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $10,000 hasta $40,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"5899989 - 3014917950");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.instagram.com/montacarganorte/");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.montacargadetalle);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.montacarga1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.montacarga2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.montacarga3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+
+
 
     /////////////////// BARES ////////////////////////////////////////////
     public void GuardarTierraCantores(){
@@ -387,13 +457,79 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $10,000 hasta $250,000");
         values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+57 3205100934");
         values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.instagram.com/tierradecantores/?hl=es");
-        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.gohan_cara1);
-        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES,R.drawable.valledupar3);
-        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES  ,R.drawable.valledupar2);
-        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES  ,R.drawable.valledupar1);
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.tierracantoresdetalle);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES,R.drawable.tierracantores1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES  ,R.drawable.tierracantores2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES  ,R.drawable.tierracantores3);
 
         db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
     }
+
+    public void GuardarPatioBar(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,3);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"EL PATIO BAR");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"Lugar acogedor, un bar de los pocos que son diferentes en valledupar, música variada, pista de baile, atención increíble, una micheladas inolvidable, además de que el lugar está muy bien ubicado en pleno centro de la ciudad, y ofrece una gran variedad de cervezas nacionales e importadas.\n" +
+                "\n" +
+                "El lugar perfecto pa irse de farra en valledupar.");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $10,000 hasta $150,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+57 3005007120");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.instagram.com/elpatiobar_valledupar/");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.patiobardetalle);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES,R.drawable.patiobar1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES  ,R.drawable.patiobar2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES  ,R.drawable.patiobar3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+    public void GuardarTlonBar(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,3);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"Tlön-Bar");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"Tlön Bar es un espacio alternativo en donde la imaginación tergiversa la realidad, en donde no buscamos la verosimilitud, sino el asombro.\n" +
+                "\n" +
+                "Cl. 15 #No.6-54, Valledupar, Cesar");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $10,000 hasta $180,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+57 3005237208-5898210");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.instagram.com/tlonbar/");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.tlonbardetalle);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES,R.drawable.tlonbar1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES  ,R.drawable.tlonbar2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES  ,R.drawable.tlonbar3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+    public void GuardarPalenke(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,3);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"PALENKE");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"Una experinecia que te conecta con el legado de nuestros ancestros africanos.\n" +
+                " Patrimonio,Historia y Cultura en el Centro Historico de Valledupar.\n"+
+                "\n" +
+                "Carrera 15 N. 6 - 74 Centro Histórico, Valledupar");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $10,000 hasta $200,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+57 315 2354378");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.instagram.com/palenkeculturabar/");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.palenkedetalle);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES,R.drawable.palenke1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES  ,R.drawable.palenke2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES  ,R.drawable.palenke3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+
 
 
 
