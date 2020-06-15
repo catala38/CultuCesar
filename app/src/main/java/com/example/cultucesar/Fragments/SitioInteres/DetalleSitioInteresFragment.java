@@ -21,7 +21,6 @@ import com.example.cultucesar.R;
 
 public class DetalleSitioInteresFragment extends Fragment {
     TextView nombreSitioI,infoGSitioI,valorSitioI,telefonoSitioI;
-    ImageView imagenSitioI1,imagenSitioI2,imagenSitioI3;
     Button btnLinkSitipI;
     String linkSitioI;
     ViewFlipper viewFlipperSitioInteres;
@@ -47,8 +46,6 @@ public class DetalleSitioInteresFragment extends Fragment {
              valorSitioI.setText(sitioInteresVo.getValorSitioInteres());
              telefonoSitioI.setText(sitioInteresVo.getTelefonoSitioInteres());
              linkSitioI = sitioInteresVo.getSitioWebInteres();
-
-
         }
 
         for(int imagen:imagenes){

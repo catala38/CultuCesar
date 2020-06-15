@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <string-array name="comboTipoSitioInteres" >
+   <string-array name="comboTipoSitioR" >
        <item>SELECCIONAR</item>
-       <item>HOTEL</item>
-       <item>RESTAURANTE</item>
-       <item>BARES</item>
+       <item>BALNEAREOS</item>
+       <item>CENTRO RECREACIONALES</item>
+       <item>PARQUES</item>
    </string-array>
 
 </resources>

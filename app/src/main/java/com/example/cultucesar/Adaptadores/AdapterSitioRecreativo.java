@@ -23,9 +23,10 @@ public class AdapterSitioRecreativo extends RecyclerView.Adapter<AdapterSitioRec
     private View.OnClickListener listener;
 
 
-    public AdapterSitioRecreativo(ArrayList<SitioRecreativoVo> sitioRecreativoVo, Context context) {
-        this.sitioRecreativoVo = sitioRecreativoVo;
+    public AdapterSitioRecreativo(Context context,ArrayList<SitioRecreativoVo> sitioRecreativoVo) {
         this.inflater = LayoutInflater.from(context);
+        this.sitioRecreativoVo = sitioRecreativoVo;
+
     }
 
     @Override
@@ -70,8 +71,6 @@ public class AdapterSitioRecreativo extends RecyclerView.Adapter<AdapterSitioRec
 
             imagenSitioR = itemView.findViewById(R.id.imagen_sitioRecreativo);
             nombreSitioR = itemView.findViewById(R.id.nombreSitioRecreativo);
-
-
 
         }
     }

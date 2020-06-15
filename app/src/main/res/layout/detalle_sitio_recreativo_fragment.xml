@@ -13,7 +13,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nombreSitioInteres"
+                android:id="@+id/nombreSitioR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -22,12 +22,12 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:paddingBottom="10dp"
-                android:text="Sitio de interes"
+                android:text="Sitio recreativo"
                 android:textSize="24sp"
                 android:textStyle="bold"></TextView>
 
             <ViewFlipper
-                android:id="@+id/flipperSitioInteres"
+                android:id="@+id/flipperSitioR"
                 android:layout_width="354dp"
                 android:layout_height="216dp"
                 android:layout_gravity="center"
@@ -48,8 +48,8 @@
                 android:layout_height="wrap_content"></TextView>
 
             <TextView
-                android:id="@+id/InfoG_SitioI"
-                android:text="Informacion del sitio interes"
+                android:id="@+id/InfoGSitioR"
+                android:text="Informacion del sitio recreativo"
                 android:gravity="center"
                 android:textSize="19dp"
                 android:layout_marginRight="20dp"
@@ -70,77 +70,7 @@
                 android:textStyle="bold">
             </TextView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorPrimary"
-                android:layout_marginTop="11dp" />
-
             //////////////////////////////////////////////////////////////////
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Valor estimado"
-                android:textSize="15dp"
-                android:layout_marginLeft="10dp"
-                android:textStyle="bold">
-            </TextView>
-
-            <LinearLayout
-                android:layout_width="278dp"
-                android:layout_height="46dp">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:src="@drawable/dinero"></ImageView>
-
-                <TextView
-                    android:id="@+id/valorSitioI"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:text="Desde $0 hasta $0"></TextView>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorPrimary"
-                android:layout_marginTop="11dp" />
-            ////////////////////////////////////////////////////////////////////
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Telefono"
-                android:textSize="15dp"
-                android:layout_marginLeft="10dp"
-                android:textStyle="bold">
-            </TextView>
-
-            <LinearLayout
-                android:layout_width="278dp"
-                android:layout_height="46dp">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:src="@drawable/telefono"></ImageView>
-
-                <TextView
-                    android:id="@+id/telefonoSitioI"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:text="+57 3015814703"></TextView>
-            </LinearLayout>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -151,7 +81,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Pagina web"
+                android:text="Ubicacion"
                 android:textSize="15dp"
                 android:layout_marginLeft="10dp"
                 android:textStyle="bold">
@@ -166,16 +96,16 @@
                     android:layout_height="45dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
-                    android:src="@drawable/web"></ImageView>
+                    android:src="@drawable/ubicacion"></ImageView>
 
                 <Button
-                    android:id="@+id/btnLinkSitioI"
+                    android:id="@+id/btnLinkSitioR"
                     style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
-                    android:text="Ir al sitio web"></Button>
+                    android:text="Ir a la Ubicacion"></Button>
             </LinearLayout>
 
             <TextView

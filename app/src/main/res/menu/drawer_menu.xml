@@ -24,7 +24,7 @@
                 android:title="Sitios de interes"/>
 
             <item
-                android:id="@+id/sitios_recreativoss"
+                android:id="@+id/sitios_recreativos"
                 android:icon="@drawable/sitios_recreativos"
                 android:title="Sitios Recreativos"/>
 

@@ -1,6 +1,8 @@
 package com.example.cultucesar.Entidades;
 
-public class SitioRecreativoVo {
+import java.io.Serializable;
+
+public class SitioRecreativoVo implements Serializable {
 
     private  int  codigo;
     private  String municipio;

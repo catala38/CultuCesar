@@ -24,6 +24,7 @@ import com.example.cultucesar.Data.CultuCesarContract;
 import com.example.cultucesar.Entidades.DestinosVo;
 import com.example.cultucesar.Entidades.EventoVo;
 import com.example.cultucesar.Entidades.SitioInteresVo;
+import com.example.cultucesar.Entidades.SitioRecreativoVo;
 import com.example.cultucesar.Fragments.DetalleDestinoFragment;
 import com.example.cultucesar.Fragments.EventosCulturales.DetalleEventoFragment;
 import com.example.cultucesar.Fragments.EventosCulturales.EventosFragment;
@@ -31,6 +32,8 @@ import com.example.cultucesar.Fragments.MainFragment;
 import com.example.cultucesar.Fragments.DestinosFragment;
 import com.example.cultucesar.Fragments.SitioInteres.DetalleSitioInteresFragment;
 import com.example.cultucesar.Fragments.SitioInteres.SitioInteresFragment;
+import com.example.cultucesar.Fragments.SitioRecreativo.DetalleSitioRecreativoFragment;
+import com.example.cultucesar.Fragments.SitioRecreativo.SitioRecreativoFragment;
 import com.example.cultucesar.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DetalleDestinoFragment detalleDestinoFragment;
     DetalleEventoFragment detalleEventoFragment;
     DetalleSitioInteresFragment detalleSitioInteresFragment;
+    DetalleSitioRecreativoFragment detalleSitioRecreativoFragment;
 
 
 
@@ -90,14 +94,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //PINTAR LOS ICONOS
         navigationView.setItemIconTintList(null);
 
+
         getApplicationContext().deleteDatabase("eventos");
         getApplicationContext().deleteDatabase("sitiosInteres");
+        getApplicationContext().deleteDatabase("sitiosRecreativo");
 
         GuardarEvento = new ConexionSQLiteEventoHelper(this,"eventos",null,1);
         CargarEventos();
 
         GuardarSitioInteres = new ConexionSQLiteSitiosInteresHelper(this,"sitiosInteres",null,1);
         CargarSitioInteres();
+
+        GuardarSitioRecreativo = new ConexionSQLiteSitiosRecreativoHelper(this,"sitiosRecreativo",null,1);
+        GuardarSitiosRecreativos();
+
     }
 
     protected void onDestroy() {
@@ -132,10 +142,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.replace(R.id.container_fragment, new SitioInteresFragment());
             fragmentTransaction.commit();
         }
-        if(menuItem.getItemId() == R.id.sitios_recreativoss) {
+        if(menuItem.getItemId() == R.id.sitios_recreativos) {
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, new EventosFragment());
+            fragmentTransaction.replace(R.id.container_fragment, new SitioRecreativoFragment());
             fragmentTransaction.commit();
         }
         if(menuItem.getItemId() == R.id.actividades) {
@@ -192,6 +202,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container_fragment, detalleSitioInteresFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void enviarSitioRecreativo(SitioRecreativoVo sitioRecreativoVo) {
+        detalleSitioRecreativoFragment = new  DetalleSitioRecreativoFragment();
+        Bundle bundleEnvio = new Bundle();
+        bundleEnvio.putSerializable("objeto", sitioRecreativoVo);
+        detalleSitioRecreativoFragment.setArguments(bundleEnvio);
+
+        //CArgar fragment en el activity
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container_fragment, detalleSitioRecreativoFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -530,8 +555,72 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    //----------------- CARGAR SITIOS RECREATIVOS --------------------------
+    public void GuardarSitiosRecreativos(){
+        ////BALNEAREOS////
+        GuardarRioGuatapuri();
+        ////CENTRO RECREACIONALES/////
+        GuardarPedregosa();
+        ///PARQUES/////
+        GuardarProvincia();
 
+    }
 
+    /////////////BALNEAREOS/////////////
+    public void GuardarRioGuatapuri(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,3);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"BALNEAREOS");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"Río Guatapurí");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"Nace en la laguna Curigua, de la Sierra Nevada de Santa Marta, y en un vertiginoso descenso de 80 kilómetros entrega sus aguas a Valledupar. Su balneario Hurtado, de cristalinas aguas, genera un ambiente refrescante donde los turistas pueden bañarse; sus contorneadas rocas enmarcan paisajes que han contribuido a crear misteriosas leyendas y son fuente de inspiración de melodías del folclor vallenato.");
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.com/maps/place/R%C3%ADo+Guatapuri/@10.501246,-73.2710014,20z/data=!4m5!3m4!1s0x8e8ab9658189339b:0x15d36ea4274d074d!8m2!3d10.5607458!4d-73.3560067?hl=es-ES");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.valledupar);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.rioguatapuri2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.riogutapuri3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+    ///////////////////CENTRO RECREACIONALES/////////////////////
+    public void GuardarPedregosa(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,3);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"CENTRO RECREACIONALES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"CENTRO RECREACIONAL LA PEDREGOSA");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"Uno de los más tradicionales espacios de Comfacesar, es el Centro Recreacional La Pedregosa, desde donde se ofrecen, juegos infantiles, zona para camping, canchas múltiples, senderos, amplias zonas verdes, piscinas familiares, infantil, semi olímpica, tobogán y un kiosco campestre, dispuesto para la realización de eventos como matrimonios, fiestas infantiles, empresariales con capacidad para alrededor de 200 personas.\n" +
+                "\n" +
+                "En este espacio se está construyendo un moderno auditorio con capacidad para 800 personas, con un diseño moderno y completamente dotado para todo tipo de reuniones, convenciones o actividades académicas y empresariales. Otro de los servicios que se ofrece desde la Pedregosa, es la recreación dirigida para eventos y suministro de logística.");
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.com/maps/place/La+Pedregosa/@10.4997196,-73.2789035,18z/data=!4m14!1m8!2m7!1sLa+pedregosa+valledupar!3m5!1sLa+pedregosa+valledupar!2s10.501238,+-73.271070!4m2!1d-73.2710704!2d10.5012381!3m4!1s0x0:0xd59c01e25587e1e1!8m2!3d10.4998342!4d-73.2784509?hl=es-ES");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.pedregosa1);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.pedregosa2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.pedregosa3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
+    ///////////PARQUES/////
+    public void GuardarProvincia(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,3);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"LA PROVINCIA");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"Un parque turístico, cultural y ecológico, con una extensión de 3.3 hectáreas, ubicado a pocos metros del río Guatapurí, de la glorieta Los Juglares y del Parque de la Leyenda Vallenata\n"+
+                "\n" +
+                "Este escenario cuenta con figuras en piedras, alusivas a animales propios de la región; juegos didácticos, senderos en losetas, jardines secos y verdes, sistema de riego, ciclo-ruta, locales comerciales, bancas antivandálicas, canecas de basura, zonas de parqueo, espejo de agua, gimnasio biosaludable, cancha sintética y máquinas de diversión para personas con movilidad reducida. En el Parque de La Provincia también funciona una fuente interactiva y una seca, contemplativa con la frase:\n"+
+                "Valledupar la más linda.");
+
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.com/maps/place/Parque+la+provincia/@10.5005432,-73.267721,19z/data=!4m8!1m2!2m1!1sla+provincia+valledupar!3m4!1s0x8e8ab9a63714a8a7:0xadefee552df60af!8m2!3d10.5004197!4d-73.2674548?hl=es");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.valledupar1);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.provincia2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.provincia3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
 
 
 
