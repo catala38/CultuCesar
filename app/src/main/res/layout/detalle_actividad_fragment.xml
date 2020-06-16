@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="55dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nombreSitioR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:text="Sitio recreativo"
+                android:textSize="24sp"
+                android:textStyle="bold"></TextView>
+
+            <ViewFlipper
+                android:id="@+id/flipperSitioR"
+                android:layout_width="354dp"
+                android:layout_height="216dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY">
+            </ViewFlipper>
+
+            <TextView
+                android:text="INFORMACION GENERAL"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:id="@+id/InfoGSitioR"
+                android:text="Informacion del sitio recreativo"
+                android:gravity="center"
+                android:textSize="19dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"></TextView>
+
+
+            ///////////////////////////////////////////////////
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="DETALLES"
+                android:textSize="25dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold">
+            </TextView>
+
+            //////////////////////////////////////////////////////////////////
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="11dp" />
+            ///////////////////////////////////////////////
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Ubicacion"
+                android:textSize="15dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="278dp"
+                android:layout_height="46dp">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/ubicacion"></ImageView>
+
+                <Button
+                    android:id="@+id/btnLinkSitioR"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:text="Ir a la Ubicacion"></Button>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text=" "
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
