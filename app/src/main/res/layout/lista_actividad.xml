@@ -13,8 +13,8 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/imagen_Actividad"
-            android:layout_width="180dp"
+            android:id="@+id/imagen_actividadlist"
+            android:layout_width="175dp"
             android:layout_height="150dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -23,20 +23,19 @@
         </ImageView>
 
         <TextView
-            android:id="@+id/nombreActividad"
+            android:id="@+id/nombreActividadList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="22dp"
-            android:layout_marginLeft="22dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
             android:layout_marginTop="47dp"
-            android:layout_toEndOf="@+id/imagen_Actividad"
-            android:layout_toRightOf="@+id/imagen_Actividad"
-            android:text="Nombre de la actividad"
+            android:layout_toEndOf="@+id/imagen_actividadlist"
+            android:layout_toRightOf="@+id/imagen_actividadlist"
+            android:gravity="center"
+            android:text="Nombre del sitio de recreativo"
             android:textSize="18sp"
-            android:textStyle="bold">
-        </TextView>
-
-
+            android:textStyle="bold"></TextView>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
+

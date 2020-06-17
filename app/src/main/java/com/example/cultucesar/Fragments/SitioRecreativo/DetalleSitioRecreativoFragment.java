@@ -15,12 +15,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.cultucesar.Entidades.ActividadesVo;
 import com.example.cultucesar.Entidades.SitioInteresVo;
 import com.example.cultucesar.Entidades.SitioRecreativoVo;
 import com.example.cultucesar.R;
 
 
 public class DetalleSitioRecreativoFragment extends Fragment {
+
     TextView nombreSitioR,infoGSitioR;
     Button btnLinkSitioR;
     String linkSitioR;
@@ -38,11 +40,11 @@ public class DetalleSitioRecreativoFragment extends Fragment {
         Bundle objetoSitioR = getArguments();
         SitioRecreativoVo sitioRecreativoVo = null;;
         if(objetoSitioR !=null){
-             sitioRecreativoVo = (SitioRecreativoVo) objetoSitioR.getSerializable("objeto");
-             imagenes  = new int[]{Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS1Recreativo())), Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS2Recreativo())), Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS3Recreativo()))};
-             nombreSitioR.setText(sitioRecreativoVo.getNombreSitioRecreativo());
-             infoGSitioR.setText(sitioRecreativoVo.getInfoSitioRecreativo());
-             linkSitioR = sitioRecreativoVo.getDetalleSitioRecreativo();
+            sitioRecreativoVo = (SitioRecreativoVo) objetoSitioR.getSerializable("objeto");
+            imagenes  = new int[]{Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS1Recreativo())), Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS2Recreativo())), Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS3Recreativo()))};
+            nombreSitioR.setText(sitioRecreativoVo.getNombreSitioRecreativo());
+            infoGSitioR.setText(sitioRecreativoVo.getInfoSitioRecreativo());
+            linkSitioR = sitioRecreativoVo.getDetalleSitioRecreativo();
         }
 
         for(int imagen:imagenes){
@@ -72,5 +74,4 @@ public class DetalleSitioRecreativoFragment extends Fragment {
         viewFlipperSitioRecreativo.setInAnimation(getContext(),android.R.anim.slide_in_left);
         viewFlipperSitioRecreativo.setOutAnimation(getContext(),android.R.anim.slide_out_right);
     }
-
 }

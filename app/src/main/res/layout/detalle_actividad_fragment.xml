@@ -13,7 +13,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nombreSitioR"
+                android:id="@+id/nombreActividad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -22,12 +22,12 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:paddingBottom="10dp"
-                android:text="Sitio recreativo"
+                android:text="Actividad"
                 android:textSize="24sp"
                 android:textStyle="bold"></TextView>
 
             <ViewFlipper
-                android:id="@+id/flipperSitioR"
+                android:id="@+id/flipperActividad"
                 android:layout_width="354dp"
                 android:layout_height="216dp"
                 android:layout_gravity="center"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"></TextView>
 
             <TextView
-                android:id="@+id/InfoGSitioR"
+                android:id="@+id/InfoGActividad"
                 android:text="Informacion del sitio recreativo"
                 android:gravity="center"
                 android:textSize="19dp"
@@ -99,7 +99,7 @@
                     android:src="@drawable/ubicacion"></ImageView>
 
                 <Button
-                    android:id="@+id/btnLinkSitioR"
+                    android:id="@+id/btnLinkActividad"
                     style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

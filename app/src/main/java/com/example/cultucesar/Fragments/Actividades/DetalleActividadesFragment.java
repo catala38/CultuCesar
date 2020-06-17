@@ -1,4 +1,4 @@
-package com.example.cultucesar.Fragments.SitioRecreativo;
+package com.example.cultucesar.Fragments.Actividades;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,44 +15,45 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.cultucesar.Entidades.SitioInteresVo;
+import com.example.cultucesar.Entidades.ActividadesVo;
 import com.example.cultucesar.Entidades.SitioRecreativoVo;
 import com.example.cultucesar.R;
 
 
-public class DetalleSitioRecreativoFragment extends Fragment {
-    TextView nombreSitioR,infoGSitioR;
-    Button btnLinkSitioR;
-    String linkSitioR;
-    ViewFlipper viewFlipperSitioRecreativo;
+public class DetalleActividadesFragment extends Fragment {
+    TextView nombreActividad,infoGActividad;
+    Button btnLinkActividad;
+    String linkActividad;
+    ViewFlipper viewFlipperActividad;
     int imagenes[];
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.detalle_sitio_recreativo_fragment,container,false);
-        nombreSitioR = view.findViewById(R.id.nombreSitioR);
-        infoGSitioR = view.findViewById(R.id.InfoGSitioR);
-        btnLinkSitioR = view.findViewById(R.id.btnLinkSitioR);
-        viewFlipperSitioRecreativo = view.findViewById(R.id.flipperSitioR);
 
-        Bundle objetoSitioR = getArguments();
-        SitioRecreativoVo sitioRecreativoVo = null;;
-        if(objetoSitioR !=null){
-             sitioRecreativoVo = (SitioRecreativoVo) objetoSitioR.getSerializable("objeto");
-             imagenes  = new int[]{Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS1Recreativo())), Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS2Recreativo())), Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS3Recreativo()))};
-             nombreSitioR.setText(sitioRecreativoVo.getNombreSitioRecreativo());
-             infoGSitioR.setText(sitioRecreativoVo.getInfoSitioRecreativo());
-             linkSitioR = sitioRecreativoVo.getDetalleSitioRecreativo();
+        View view = inflater.inflate(R.layout.detalle_actividad_fragment,container,false);
+        nombreActividad = view.findViewById(R.id.nombreActividad);
+        infoGActividad = view.findViewById(R.id.InfoGActividad);
+        btnLinkActividad = view.findViewById(R.id.btnLinkActividad);
+        viewFlipperActividad = view.findViewById(R.id.flipperActividad);
+
+        Bundle objetoActividad = getArguments();
+        ActividadesVo actividadesVo = null;;
+        if(objetoActividad !=null){
+            actividadesVo = (ActividadesVo) objetoActividad.getSerializable("objeto");
+            imagenes  = new int[]{Integer.parseInt(String.valueOf(actividadesVo.getImagenD())), Integer.parseInt(String.valueOf(actividadesVo.getImagenP()))};
+            nombreActividad.setText(actividadesVo.getNombreActividad());
+            infoGActividad.setText(actividadesVo.getInfoGeneral());
+            linkActividad = actividadesVo.getDetalleActividad();
         }
 
         for(int imagen:imagenes){
             flipperImagenes(imagen);
         }
 
-        btnLinkSitioR.setOnClickListener(new View.OnClickListener() {
+        btnLinkActividad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse(linkSitioR);
+                Uri uri = Uri.parse(linkActividad);
                 Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                 startActivity(intent);
             }
@@ -66,11 +67,12 @@ public class DetalleSitioRecreativoFragment extends Fragment {
     public void flipperImagenes(int imagen){
         ImageView imageView = new ImageView(getActivity().getApplicationContext());
         imageView.setBackgroundResource(imagen);
-        viewFlipperSitioRecreativo.addView(imageView);
-        viewFlipperSitioRecreativo.setFlipInterval(3000);
-        viewFlipperSitioRecreativo.setAutoStart(true);
-        viewFlipperSitioRecreativo.setInAnimation(getContext(),android.R.anim.slide_in_left);
-        viewFlipperSitioRecreativo.setOutAnimation(getContext(),android.R.anim.slide_out_right);
+        viewFlipperActividad.addView(imageView);
+        viewFlipperActividad.setFlipInterval(3000);
+        viewFlipperActividad.setAutoStart(true);
+        viewFlipperActividad.setInAnimation(getContext(),android.R.anim.slide_in_left);
+        viewFlipperActividad.setOutAnimation(getContext(),android.R.anim.slide_out_right);
     }
+
 
 }

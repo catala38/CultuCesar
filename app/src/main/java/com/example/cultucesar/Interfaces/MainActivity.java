@@ -21,10 +21,13 @@ import com.example.cultucesar.Data.ConexionSQLiteEventoHelper;
 import com.example.cultucesar.Data.ConexionSQLiteSitiosInteresHelper;
 import com.example.cultucesar.Data.ConexionSQLiteSitiosRecreativoHelper;
 import com.example.cultucesar.Data.CultuCesarContract;
+import com.example.cultucesar.Entidades.ActividadesVo;
 import com.example.cultucesar.Entidades.DestinosVo;
 import com.example.cultucesar.Entidades.EventoVo;
 import com.example.cultucesar.Entidades.SitioInteresVo;
 import com.example.cultucesar.Entidades.SitioRecreativoVo;
+import com.example.cultucesar.Fragments.Actividades.ActiviadadesFragment;
+import com.example.cultucesar.Fragments.Actividades.DetalleActividadesFragment;
 import com.example.cultucesar.Fragments.DetalleDestinoFragment;
 import com.example.cultucesar.Fragments.EventosCulturales.DetalleEventoFragment;
 import com.example.cultucesar.Fragments.EventosCulturales.EventosFragment;
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DetalleEventoFragment detalleEventoFragment;
     DetalleSitioInteresFragment detalleSitioInteresFragment;
     DetalleSitioRecreativoFragment detalleSitioRecreativoFragment;
+    DetalleActividadesFragment detalleActividadesFragment;
 
 
 
@@ -98,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getApplicationContext().deleteDatabase("eventos");
         getApplicationContext().deleteDatabase("sitiosInteres");
         getApplicationContext().deleteDatabase("sitiosRecreativo");
+        getApplicationContext().deleteDatabase("actividades");
+
 
         GuardarEvento = new ConexionSQLiteEventoHelper(this,"eventos",null,1);
         CargarEventos();
@@ -107,6 +113,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         GuardarSitioRecreativo = new ConexionSQLiteSitiosRecreativoHelper(this,"sitiosRecreativo",null,1);
         GuardarSitiosRecreativos();
+
+        GuardarActividades = new ConexionSQLiteActividadHelper(this,"actividades",null,1);
+        GuardarActividades();
+
 
     }
 
@@ -151,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(menuItem.getItemId() == R.id.actividades) {
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, new EventosFragment());
+            fragmentTransaction.replace(R.id.container_fragment, new ActiviadadesFragment());
             fragmentTransaction.commit();
         }
         return false;
@@ -217,6 +227,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container_fragment, detalleSitioRecreativoFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void enviarActividades(ActividadesVo actividadesVo) {
+        detalleActividadesFragment = new DetalleActividadesFragment();
+        Bundle bundleEnvio = new Bundle();
+        bundleEnvio.putSerializable("objeto", actividadesVo);
+        detalleActividadesFragment.setArguments(bundleEnvio);
+
+        //CArgar fragment en el activity
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container_fragment, detalleActividadesFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -561,8 +586,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         GuardarRioGuatapuri();
         ////CENTRO RECREACIONALES/////
         GuardarPedregosa();
+        GuardarEscuelaAmbiental();
         ///PARQUES/////
         GuardarProvincia();
+        GuardarCristoRey();
+        GuardarParqueAlgarrobillos();
+        GuardarParqueElViajero();
 
     }
 
@@ -570,7 +599,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarRioGuatapuri(){
         SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,3);
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,1);
         values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"BALNEAREOS");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"Río Guatapurí");
@@ -586,7 +615,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarPedregosa(){
         SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,3);
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,2);
         values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"CENTRO RECREACIONALES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"CENTRO RECREACIONAL LA PEDREGOSA");
@@ -601,11 +630,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
     }
 
+    public void GuardarEscuelaAmbiental(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,3);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"CENTRO RECREACIONALES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"ESCUELA AMBIENTAL");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"educación ambiental que trabaja en la búsqueda de educar, concienciar y preservar los valores de los más pequeños, en armonía con el entorno paisajístico y ecológico.\n" +
+                "\n" +
+                "Cuenta con tres hectáreas aproximadamente, donde se realizan las actividades de convivencia y socialización ecológica, así como talleres de recuperación de materiales desechables, reelaboración de papel, cuenta con un espejo de agua recreativo, cabañas, piscinas de lodo terapéutico, talasoterapia, de rosas, boliche-terapia, baño sauna y el más reciente la Cochinoterapia.\n" +
+                "\n" +
+                "La Escuela Ambiental pretende que no solo los niños disfruten de ella, sino que además los adultos también vayan a interactuar con el agua, la tierra, que respiren el aire puro.");
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.com/maps/place/Escuela+Ambiental+Valledupar/@10.5010631,-73.2744132,19z/data=!3m1!4b1!4m12!1m6!3m5!1s0x8e8ab9bc270c523b:0x654884d6a441f49d!2sEscuela+Ambiental+Valledupar!8m2!3d10.5010618!4d-73.273866!3m4!1s0x8e8ab9bc270c523b:0x654884d6a441f49d!8m2!3d10.5010618!4d-73.273866?hl=es");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.escuelaambiental1);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.escuelaambiental2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.escuelaambiental3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
     ///////////PARQUES/////
     public void GuardarProvincia(){
         SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,3);
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,4);
         values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"LA PROVINCIA");
@@ -621,6 +670,140 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
     }
+
+
+    public void GuardarCristoRey(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,4);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"CRISTO REY");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"El parque Cristo Rey, ubicado en el barrio Simón Bolívar, Como atractivo, esta obra cuenta con una fuente seca con un piso en arte con trencadi, homenaje a la paz de Valledupar y Colombia, tiene 72 chorros de agua e igual números de luces interactivas.\n"+
+                "\n" +
+                "Es una fuente que puede estar sincronizada con música, los chorros de agua y las luces pueden estar en coordinación a la música. Hay parque infantil, estación biosaludable, el quiosco incluye cafetería con bodega y baños públicos, las dos cosas en cumplimiento al Código Nacional de Policía, bahía de parqueadero para visitantes y motocicletas, se respetó el atrio de la iglesia por eso existe la posibilidad de que los vehículos que lleguen para actos fúnebres o matrimonios puedan ingresar hasta la puerta de la iglesia.");
+
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.com/maps/place/Parque+Cristo+Rey/@10.4583767,-73.2468033,15z/data=!4m8!1m2!2m1!1sparques+en+valledupar!3m4!1s0x0:0x49cd17d79a6b9e40!8m2!3d10.4583771!4d-73.2468045");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.cristorey1);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.cristorey2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.cristorey3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
+    public void GuardarParqueAlgarrobillos(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,4);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"PARQUE DE LOS ALGARROBILLOS");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"Un lugar totalmente recomendado para hacer cualquier tipo de actividad, sea deporte o simplemente ir a pasear con tu familia o mascota. \n"+
+                "\n" +
+                "Si quieres tranquilidad hay mucho árboles lo cual lo hace un lugar muy fresco y agradable para charlas.");
+
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.com/maps/place/Parque+De+Los+Algarrobillos./@10.457023,-73.2384233,17z/data=!4m12!1m6!3m5!1s0x8e8ab998d8e39079:0x15c6b92bc5302a5!2sParque+De+Los+Algarrobillos.!8m2!3d10.4570177!4d-73.2362346!3m4!1s0x8e8ab998d8e39079:0x15c6b92bc5302a5!8m2!3d10.4570177!4d-73.2362346?hl=es");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.algarrobillo1);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.algarrobillo2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.algarrobillo3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
+
+    public void GuardarParqueElViajero(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,4);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"PARQUE EL VIAJERO");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"El parque El Viajero, un centro de recreación público que por más de 30 años ha sido testigo de turistas, habitantes y cuanto ciudadano ha tenido la oportunidad de estar ahí.\n"+
+                "\n" +
+                "Ubicado en la carrera 9 con calle 12 el viajero es uno de los monumentos con mayor significado histórico de la ciudad.En los últimos años, el Parque El Viajero ha perdido una parte de su atractivo debido a la falta de mantenimiento de sus instalaciones, pero sigue siendo un punto destacado para los eventos culturales.");
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.com/maps/place/Parque+El+Viajero/@10.4803523,-73.2536431,17z/data=!4m12!1m6!3m5!1s0x8e8ab9b5134c37cd:0x381bfc59b2e1745c!2sParque+El+Viajero!8m2!3d10.480347!4d-73.2514544!3m4!1s0x8e8ab9b5134c37cd:0x381bfc59b2e1745c!8m2!3d10.480347!4d-73.2514544");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.viajero1);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.viajero2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.viajero3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
+
+    //---------CARGAR ACTIVIDADES-----
+
+    public void GuardarActividades(){
+        GuardarCaminata();
+        GuardarCityTour();
+        GuardarCalleGrande();
+        GuardarElCuartico();
+    }
+    public void GuardarCaminata(){
+        SQLiteDatabase db = GuardarActividades.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_ACTIVIDAD,1);
+        values.put(CultuCesarContract.MUNICIPIO_ACTIVIDAD ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_ACTIVIDAD ,"CAMINATAS / SENDERISMO");
+        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Este plan es perfecto para todo aquel que disfrute ejercitar su cuerpo, disfrutando de la naturaleza y el clima fresco de la mañana. Si visitas Valledupar puedes realizar caminatas por el parque lineal del rio Guatapurí y conectar con los senderos del cerro del mirador del Santo Ecce Homo. \n"+
+                "\n" +
+                "Recomedaciones: Ropa y calzado adecuados. Si realizas estas actividades en Valledupar ten en cuenta que el clima es cálido y seco, la hidratación es fundamental. En Manaure ten en cuenta que la mayoría de los senderos son en altura; en el caso de Sabana Rubia llegarás hasta los 3.000 m.s.n.m por lo que debes llevar ropa para clima frio.");
+        values.put(CultuCesarContract.DETALLE_ACTIVIDAD ,"https://www.google.com/maps/place/Capilla+Santo+EcceHomo/@10.5093017,-73.2632645,17z/data=!4m12!1m6!3m5!1s0x8e8ab816d1d944b3:0xbc64a367cb19b61d!2sCapilla+Santo+EcceHomo!8m2!3d10.5093017!4d-73.2610758!3m4!1s0x8e8ab816d1d944b3:0xbc64a367cb19b61d!8m2!3d10.5093017!4d-73.2610758");
+        values.put(CultuCesarContract.FOTO_ACTIVIDAD ,R.drawable.santoeccehomo1);
+        values.put(CultuCesarContract.IMG_DETALLE_ACTIVIDAD ,R.drawable.santoeccehomo2);
+
+        db.insert(CultuCesarContract.TABLA_ACTIVIDAD ,null,values);
+    }
+
+    public void GuardarCityTour(){
+        SQLiteDatabase db = GuardarActividades.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_ACTIVIDAD,2);
+        values.put(CultuCesarContract.MUNICIPIO_ACTIVIDAD ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_ACTIVIDAD ,"CITY TOUR - VALLEDUPAR");
+        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Valledupar es reconocido por sus monumentos y glorietas, en homenaje a su historia y cultura. En la ciudad hay más de 20 monumentos y glorietas, la mayoría dedicados a la música y cultura tradicional vallenata.\n"+
+                "\n" +
+                "El recorrido lo puede hacer en vehículo propio o para más comodidad, en la ciudad se ofrecen planes y recorridos turísticos que llegan a incluir (dependiendo de la tarifa) transporte, hidratación, ambiente musical, tarjeta de asistencia médica y guía especializado, hasta almuerzo típico, souvenir, que hará más atractivo el tour por la ciudad.");
+        values.put(CultuCesarContract.DETALLE_ACTIVIDAD ,"https://www.google.com/maps/place/Paseo+Vallenato+Tour/@10.4714877,-73.2582133,17z/data=!3m1!4b1!4m5!3m4!1s0x8e8ab99328149105:0x9346ce9451262adf!8m2!3d10.4714877!4d-73.2560246");
+        values.put(CultuCesarContract.FOTO_ACTIVIDAD ,R.drawable.citytour1);
+        values.put(CultuCesarContract.IMG_DETALLE_ACTIVIDAD ,R.drawable.citytour2);
+
+        db.insert(CultuCesarContract.TABLA_ACTIVIDAD ,null,values);
+    }
+
+    public void GuardarCalleGrande(){
+        SQLiteDatabase db = GuardarActividades.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_ACTIVIDAD,3);
+        values.put(CultuCesarContract.MUNICIPIO_ACTIVIDAD ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_ACTIVIDAD ,"CENTRO ARTESANAL CALLE GRANDE");
+        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Ubicado en la calle 16 # 7 – 18, en una manzana de la Plaza Alfonso López del centro histórico de la ciudad. Allí puede encontrar mochilas arhuacas, artesanías, sombreros, pinturas, entre otros souvenirs para llevar a la familia y amigos y recordar su experiencia en Valledupar.");
+
+        values.put(CultuCesarContract.DETALLE_ACTIVIDAD ,"https://www.google.com/maps/place/Centro+Artesanal+Calle+Grande/@10.4761931,-73.2479444,17z/data=!4m8!1m2!2m1!1scalle+grande!3m4!1s0x0:0x87bb632f5f429c49!8m2!3d10.476188!4d-73.2457557");
+        values.put(CultuCesarContract.FOTO_ACTIVIDAD ,R.drawable.callegrande1);
+        values.put(CultuCesarContract.IMG_DETALLE_ACTIVIDAD ,R.drawable.callegrande2);
+
+        db.insert(CultuCesarContract.TABLA_ACTIVIDAD ,null,values);
+    }
+
+    public void GuardarElCuartico(){
+        SQLiteDatabase db = GuardarActividades.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_ACTIVIDAD ,4);
+        values.put(CultuCesarContract.MUNICIPIO_ACTIVIDAD ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_ACTIVIDAD ,"CASA DE BAHAREQUE EL CUARTICO");
+        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Casa ubicada en el barrio San Joaquín de Valledupar, donde puede recrear el modo de vida de una familia vallenata del siglo XX. Allí se guarda la historia del Valledupar de antaño. Es un lugar donde se conserva la esencia, las costumbres y tradiciones del viejo Valledupar. Construido con madera, techo de teja y piso de barro; Centro de Memoria para las futuras generaciones.\n");
+
+        values.put(CultuCesarContract.DETALLE_ACTIVIDAD ,"https://www.google.com/maps/place/El+Cuartico/@10.4707928,-73.2638964,21z/data=!4m8!1m2!2m1!1sCASA+DE+BAHAREQUE+-+EL+CUARTICO!3m4!1s0x0:0xd78fea49c8bd665b!8m2!3d10.4708066!4d-73.2639023");
+        values.put(CultuCesarContract.FOTO_ACTIVIDAD ,R.drawable.cuartico1);
+        values.put(CultuCesarContract.IMG_DETALLE_ACTIVIDAD ,R.drawable.cuartico2);
+
+        db.insert(CultuCesarContract.TABLA_ACTIVIDAD,null,values);
+    }
+
+
+
+
+
 
 
 

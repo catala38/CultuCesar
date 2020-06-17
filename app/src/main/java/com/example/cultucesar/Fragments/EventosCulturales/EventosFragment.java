@@ -50,8 +50,6 @@ public class EventosFragment extends Fragment {
             recyclerEvento = view.findViewById(R.id.recyclerViewEvento);
             ConsultarEventos();
 
-
-
         }catch (Exception e){
 
         }

@@ -1,6 +1,8 @@
 package com.example.cultucesar.Entidades;
 
-public class ActividadesVo {
+import java.io.Serializable;
+
+public class ActividadesVo implements Serializable {
 
     private  int  codigo;
     private  String municipio;
@@ -15,7 +17,7 @@ public class ActividadesVo {
         this.municipio = municipio;
         this.nombreActividad = nombreActividad;
         this.infoGeneral = infoGeneral;
-        DetalleActividad = detalleActividad;
+        this.DetalleActividad = detalleActividad;
         this.imagenP = imagenP;
         this.imagenD = imagenD;
     }

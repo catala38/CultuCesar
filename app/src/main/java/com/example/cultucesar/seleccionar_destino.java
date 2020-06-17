@@ -12,7 +12,7 @@ import com.example.cultucesar.Interfaces.MainActivity;
 
 public class seleccionar_destino extends AppCompatActivity {
 
-    private ImageButton botonValledupar,botonManaure;
+    private Button botonValledupar,botonManaure;
     public static String destino;
 
     @Override
@@ -20,7 +20,7 @@ public class seleccionar_destino extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccionar_destino);
 
-        botonValledupar = (ImageButton) findViewById(R.id.imageButtonValledupar);
+        botonValledupar = (Button) findViewById(R.id.imageButtonValledupar);
         botonValledupar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,7 +31,7 @@ public class seleccionar_destino extends AppCompatActivity {
             }
         });
 
-        botonManaure = (ImageButton) findViewById(R.id.imageButtonManaure);
+        botonManaure = (Button) findViewById(R.id.imageButtonManaure);
         botonManaure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

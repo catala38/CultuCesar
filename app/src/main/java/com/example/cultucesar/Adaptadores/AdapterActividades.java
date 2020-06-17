@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cultucesar.Entidades.ActividadesVo;
-import com.example.cultucesar.Entidades.SitioInteresVo;
 import com.example.cultucesar.R;
 
 import java.util.ArrayList;
@@ -23,9 +22,10 @@ public class AdapterActividades extends RecyclerView.Adapter<AdapterActividades.
     private View.OnClickListener listener;
 
 
-    public AdapterActividades(ArrayList<ActividadesVo> ActividadesVo, Context context) {
-        this.actividadesVo = ActividadesVo;
+    public AdapterActividades(Context context,ArrayList<ActividadesVo> actividadesVo) {
         this.inflater = LayoutInflater.from(context);
+        this.actividadesVo = actividadesVo;
+
     }
 
     @Override
@@ -68,8 +68,8 @@ public class AdapterActividades extends RecyclerView.Adapter<AdapterActividades.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imagenActividad = itemView.findViewById(R.id.imagen_Actividad);
-            nombreActividad = itemView.findViewById(R.id.nombreActividad);
+            imagenActividad = itemView.findViewById(R.id.imagen_actividadlist);
+            nombreActividad = itemView.findViewById(R.id.nombreActividadList);
 
         }
     }
