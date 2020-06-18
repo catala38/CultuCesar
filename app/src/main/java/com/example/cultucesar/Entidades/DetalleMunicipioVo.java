@@ -1,8 +1,11 @@
 package com.example.cultucesar.Entidades;
 
-public class DetalleMunicipioVo {
+import java.io.Serializable;
+
+public class DetalleMunicipioVo  implements Serializable {
 
     private  int  codigo;
+    private String tipo;
     private  String municipio;
     private  String nombreDetalleM;
     private  String infoGM;
@@ -10,8 +13,9 @@ public class DetalleMunicipioVo {
     private  int fotoDetalleM;
     private  int imageDetalleM;
 
-    public DetalleMunicipioVo(int codigo, String municipio, String nombreDetalleM, String infoGM, String descripcionDetalleM, int fotoDetalleM, int imageDetalleM) {
+    public DetalleMunicipioVo(int codigo,String tipo ,String municipio, String nombreDetalleM, String infoGM, String descripcionDetalleM, int fotoDetalleM, int imageDetalleM) {
         this.codigo = codigo;
+        this.tipo = tipo;
         this.municipio = municipio;
         this.nombreDetalleM = nombreDetalleM;
         this.infoGM = infoGM;
@@ -29,6 +33,14 @@ public class DetalleMunicipioVo {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getMunicipio() {

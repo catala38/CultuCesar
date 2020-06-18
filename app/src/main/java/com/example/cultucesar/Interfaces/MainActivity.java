@@ -22,17 +22,17 @@ import com.example.cultucesar.Data.ConexionSQLiteSitiosInteresHelper;
 import com.example.cultucesar.Data.ConexionSQLiteSitiosRecreativoHelper;
 import com.example.cultucesar.Data.CultuCesarContract;
 import com.example.cultucesar.Entidades.ActividadesVo;
-import com.example.cultucesar.Entidades.DestinosVo;
+import com.example.cultucesar.Entidades.DetalleMunicipioVo;
 import com.example.cultucesar.Entidades.EventoVo;
 import com.example.cultucesar.Entidades.SitioInteresVo;
 import com.example.cultucesar.Entidades.SitioRecreativoVo;
 import com.example.cultucesar.Fragments.Actividades.ActiviadadesFragment;
 import com.example.cultucesar.Fragments.Actividades.DetalleActividadesFragment;
-import com.example.cultucesar.Fragments.DetalleDestinoFragment;
+import com.example.cultucesar.Fragments.DetalleMunicipio.DetalleDetalleMunicipioFragment;
+import com.example.cultucesar.Fragments.DetalleMunicipio.DetalleMunicipioFragment;
 import com.example.cultucesar.Fragments.EventosCulturales.DetalleEventoFragment;
 import com.example.cultucesar.Fragments.EventosCulturales.EventosFragment;
 import com.example.cultucesar.Fragments.MainFragment;
-import com.example.cultucesar.Fragments.DestinosFragment;
 import com.example.cultucesar.Fragments.SitioInteres.DetalleSitioInteresFragment;
 import com.example.cultucesar.Fragments.SitioInteres.SitioInteresFragment;
 import com.example.cultucesar.Fragments.SitioRecreativo.DetalleSitioRecreativoFragment;
@@ -58,11 +58,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     //variable del fragment detalle
-    DetalleDestinoFragment detalleDestinoFragment;
+
     DetalleEventoFragment detalleEventoFragment;
     DetalleSitioInteresFragment detalleSitioInteresFragment;
     DetalleSitioRecreativoFragment detalleSitioRecreativoFragment;
     DetalleActividadesFragment detalleActividadesFragment;
+    DetalleDetalleMunicipioFragment detalleDetalleMunicipioFragment;
 
 
 
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getApplicationContext().deleteDatabase("sitiosInteres");
         getApplicationContext().deleteDatabase("sitiosRecreativo");
         getApplicationContext().deleteDatabase("actividades");
+        getApplicationContext().deleteDatabase("detalle");
 
 
         GuardarEvento = new ConexionSQLiteEventoHelper(this,"eventos",null,1);
@@ -116,6 +118,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         GuardarActividades = new ConexionSQLiteActividadHelper(this,"actividades",null,1);
         GuardarActividades();
+
+        GuardarDetalleM = new ConexionSQLiteDetalleMunicipioHelper(this,"detalle",null,1);
+        GuardarDetallesMunicipio();
 
 
     }
@@ -132,12 +137,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_fragment,new MainFragment());
-            fragmentTransaction.commit();
-        }
-        if(menuItem.getItemId() == R.id.destinos){
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment,new DestinosFragment());
             fragmentTransaction.commit();
         }
         if(menuItem.getItemId() == R.id.eventos_culturales) {
@@ -164,27 +163,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.replace(R.id.container_fragment, new ActiviadadesFragment());
             fragmentTransaction.commit();
         }
+        if(menuItem.getItemId() == R.id.acerca_departamento) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, new DetalleMunicipioFragment());
+            fragmentTransaction.commit();
+        }
         return false;
     }
 
 
    //----ENVIO A INTERFACES DETALLE--------------
-    @Override
-    public void enviarDestinos(DestinosVo destinosVo) {
 
-        detalleDestinoFragment = new DetalleDestinoFragment();
-        Bundle bundleEnvio = new Bundle();
-        bundleEnvio.putSerializable("objeto", destinosVo);
-        detalleDestinoFragment.setArguments(bundleEnvio);
-
-        //CArgar fragment en el activity
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container_fragment, detalleDestinoFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-
-    }
 
     @Override
     public void enviarEventoCultural(EventoVo eventoVo) {
@@ -246,6 +236,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void enviarDetalleMunicipio(DetalleMunicipioVo detalleMunicipioVo) {
+        detalleDetalleMunicipioFragment = new DetalleDetalleMunicipioFragment();
+        Bundle bundleEnvio = new Bundle();
+        bundleEnvio.putSerializable("objeto", detalleMunicipioVo);
+        detalleDetalleMunicipioFragment.setArguments(bundleEnvio);
+
+        //CArgar fragment en el activity
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container_fragment, detalleDetalleMunicipioFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
 
     //---- Cargar EventosCulturales ------
 
@@ -285,6 +290,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         db.insert(CultuCesarContract.TABLA_EVENTO,null,values);
     }
+
 
 
 
@@ -600,7 +606,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
         ContentValues values =  new ContentValues();
         values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,1);
-        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"BALNEAREOS");
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"BALNEARIOS");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"Río Guatapurí");
         values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"Nace en la laguna Curigua, de la Sierra Nevada de Santa Marta, y en un vertiginoso descenso de 80 kilómetros entrega sus aguas a Valledupar. Su balneario Hurtado, de cristalinas aguas, genera un ambiente refrescante donde los turistas pueden bañarse; sus contorneadas rocas enmarcan paisajes que han contribuido a crear misteriosas leyendas y son fuente de inspiración de melodías del folclor vallenato.");
@@ -744,9 +750,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.put(CultuCesarContract.CODIGO_ACTIVIDAD,1);
         values.put(CultuCesarContract.MUNICIPIO_ACTIVIDAD ,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_ACTIVIDAD ,"CAMINATAS / SENDERISMO");
-        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Este plan es perfecto para todo aquel que disfrute ejercitar su cuerpo, disfrutando de la naturaleza y el clima fresco de la mañana. Si visitas Valledupar puedes realizar caminatas por el parque lineal del rio Guatapurí y conectar con los senderos del cerro del mirador del Santo Ecce Homo. \n"+
+        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Este plan es perfecto para todo aquel que le guste ejercitar su cuerpo, disfrutando de la naturaleza y el clima fresco de la mañana. Si visitas Valledupar puedes realizar caminatas por el parque lineal del rio Guatapurí y conectar con los senderos del cerro del mirador del Santo Ecce Homo. \n"+
                 "\n" +
-                "Recomedaciones: Ropa y calzado adecuados. Si realizas estas actividades en Valledupar ten en cuenta que el clima es cálido y seco, la hidratación es fundamental. En Manaure ten en cuenta que la mayoría de los senderos son en altura; en el caso de Sabana Rubia llegarás hasta los 3.000 m.s.n.m por lo que debes llevar ropa para clima frio.");
+                "Recomedaciones: Ropa y calzado adecuados. Si realizas estas actividades en Valledupar ten en cuenta que el clima es cálido y seco, la hidratación es fundamental.");
         values.put(CultuCesarContract.DETALLE_ACTIVIDAD ,"https://www.google.com/maps/place/Capilla+Santo+EcceHomo/@10.5093017,-73.2632645,17z/data=!4m12!1m6!3m5!1s0x8e8ab816d1d944b3:0xbc64a367cb19b61d!2sCapilla+Santo+EcceHomo!8m2!3d10.5093017!4d-73.2610758!3m4!1s0x8e8ab816d1d944b3:0xbc64a367cb19b61d!8m2!3d10.5093017!4d-73.2610758");
         values.put(CultuCesarContract.FOTO_ACTIVIDAD ,R.drawable.santoeccehomo1);
         values.put(CultuCesarContract.IMG_DETALLE_ACTIVIDAD ,R.drawable.santoeccehomo2);
@@ -760,7 +766,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.put(CultuCesarContract.CODIGO_ACTIVIDAD,2);
         values.put(CultuCesarContract.MUNICIPIO_ACTIVIDAD ,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_ACTIVIDAD ,"CITY TOUR - VALLEDUPAR");
-        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Valledupar es reconocido por sus monumentos y glorietas, en homenaje a su historia y cultura. En la ciudad hay más de 20 monumentos y glorietas, la mayoría dedicados a la música y cultura tradicional vallenata.\n"+
+        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Valledupar es reconocida por sus monumentos y glorietas, en homenaje a su historia y cultura. En la ciudad hay más de 20 monumentos y glorietas, la mayoría dedicados a la música y cultura tradicional vallenata.\n"+
                 "\n" +
                 "El recorrido lo puede hacer en vehículo propio o para más comodidad, en la ciudad se ofrecen planes y recorridos turísticos que llegan a incluir (dependiendo de la tarifa) transporte, hidratación, ambiente musical, tarjeta de asistencia médica y guía especializado, hasta almuerzo típico, souvenir, que hará más atractivo el tour por la ciudad.");
         values.put(CultuCesarContract.DETALLE_ACTIVIDAD ,"https://www.google.com/maps/place/Paseo+Vallenato+Tour/@10.4714877,-73.2582133,17z/data=!3m1!4b1!4m5!3m4!1s0x8e8ab99328149105:0x9346ce9451262adf!8m2!3d10.4714877!4d-73.2560246");
@@ -776,7 +782,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.put(CultuCesarContract.CODIGO_ACTIVIDAD,3);
         values.put(CultuCesarContract.MUNICIPIO_ACTIVIDAD ,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_ACTIVIDAD ,"CENTRO ARTESANAL CALLE GRANDE");
-        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Ubicado en la calle 16 # 7 – 18, en una manzana de la Plaza Alfonso López del centro histórico de la ciudad. Allí puede encontrar mochilas arhuacas, artesanías, sombreros, pinturas, entre otros souvenirs para llevar a la familia y amigos y recordar su experiencia en Valledupar.");
+        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Ubicado en la calle 16 # 7 – 18, ha una cuadra de la Plaza Alfonso López del centro histórico de la ciudad. Allí puede encontrar mochilas arhuacas, artesanías, sombreros, pinturas, entre otros souvenirs para llevar a la familia y amigos y recordar su experiencia en Valledupar.");
 
         values.put(CultuCesarContract.DETALLE_ACTIVIDAD ,"https://www.google.com/maps/place/Centro+Artesanal+Calle+Grande/@10.4761931,-73.2479444,17z/data=!4m8!1m2!2m1!1scalle+grande!3m4!1s0x0:0x87bb632f5f429c49!8m2!3d10.476188!4d-73.2457557");
         values.put(CultuCesarContract.FOTO_ACTIVIDAD ,R.drawable.callegrande1);
@@ -799,6 +805,196 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         db.insert(CultuCesarContract.TABLA_ACTIVIDAD,null,values);
     }
+
+    //---------Guardar detalle municipios------------
+    public void GuardarDetallesMunicipio(){
+        //--MUSICA--
+        GuardarVallenato();
+        //--HISTORIAS--
+        GuardarHisotiraFestivalVallenato();
+        GuardarHisotiraPiloneras();
+        //--LEYENDAS---
+        GuardarLeyendaFrancisco();
+        GuardarLeyendaSirenaHurtado();
+        //--JUGLARES---
+        GuardarRafaelEscalona();
+        GuardarTobiasEnrique();
+        GuardarCalixto();
+        GuardarLorenzo();
+    }
+
+
+    public void GuardarVallenato(){
+        SQLiteDatabase db = GuardarDetalleM.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_DETALLE_M ,1);
+        values.put(CultuCesarContract.TIPO_DETALLE_M,"MUSICA AUTOCTONA");
+        values.put(CultuCesarContract.MUNICIPIO_DETALLE_M ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_DETALLE_M ,"El VALLENATO");
+        values.put(CultuCesarContract.INFO_DETALLE_M ,"Este género músical nace en Valledupar, donde yacían tribus indígenas, incluidas las Chimilas y Tupes, gobernadas por un poderoso jefe conocido como el Cacique Upar. Ahí es donde la ciudad recibe su nombre (Valle de Upar) y vallenato, a su vez, significa “nacido en el valle”.\n" +
+                "\n" +
+                "Se dice que los agricultores de la región heredaron las tradiciones de juglares españoles y africanos, cantando y tocando sus instrumentos mientras viajaban de ciudad en ciudad con sus vacas, compartiendo noticias y mensajes. Finalmente, los instrumentos africanos e indígenas, como las flautas de gaita , la guacharaca y los tambores, se unieron al acordeón europeo y así es como nace el vallenato..");
+
+        values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://www.colombia.co/cultura-colombiana/musica/valledupar-la-cuna-del-vallenato/");
+        values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.festivalvallenato1);
+        values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.vallenato1);
+
+        db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
+    }
+
+
+
+    public void GuardarHisotiraFestivalVallenato(){
+        SQLiteDatabase db = GuardarDetalleM.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_DETALLE_M ,2);
+        values.put(CultuCesarContract.TIPO_DETALLE_M,"HISTORIA");
+        values.put(CultuCesarContract.MUNICIPIO_DETALLE_M ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_DETALLE_M ,"HISTORIA DEL FESTIVAL VALLLENATO");
+        values.put(CultuCesarContract.INFO_DETALLE_M ,"El Festival de la Leyenda Vallenata en toda su historia ha ido evolucionando al compás del desarrollo social y económico de Valledupar. Desde sus inicios hasta 1986 este evento era organizado por la oficina de Turismo del Departamento de El Cesar. Luego se creó la Fundación Festival de la Leyenda Vallenata, la cual funciona desde 1987 en las instalaciones de la Tarima Francisco el Hombre de la Plaza Alfonso López. Ese mismo año el Festival sirvió de marco para inaugurar la televisión regional, con el canal costeño Telecaribe, que hasta 1998 estuvo encargado de transmitir en vivo y en directo el desarrollo del evento.\n");
+
+        values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://festivalvallenato.com/festival-vallenato/que-es/");
+        values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.festivalvallenato2);
+        values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.festival1);
+
+        db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
+    }
+
+    public void GuardarHisotiraPiloneras(){
+        SQLiteDatabase db = GuardarDetalleM.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_DETALLE_M ,3);
+        values.put(CultuCesarContract.TIPO_DETALLE_M,"HISTORIA");
+        values.put(CultuCesarContract.MUNICIPIO_DETALLE_M ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_DETALLE_M ,"HISTORIA DE LAS PILONERAS");
+        values.put(CultuCesarContract.INFO_DETALLE_M ,"La danza del Pilón es el desfile que desde 1994 da inicio oficial al Festival de la Leyenda Vallenata, aunque su origen se remonta a muchos años atrás.\n" +
+                "El popular desfile de Las Piloneras es el acto cultural más importante del folclor Vallenato que reúne a todas las generaciones en un solo sentir.\n" +
+                "\n" +
+                "El origen de la danza de la piloneras está inspirado en las tareas domésticas tradicionales de las mujeres que hacían vida en el Cesar, La Guajira, el Magdalena y otras zonas de la costa Caribe.El golpeteo del maíz con el mazo del pilón produce un sonido ritmico que con el paso de las generaciones dio vida al baile las piloneras.\n" +
+                "\n" +
+                "La Danza del Pilón estuvo a punto de desaparecer, de no ser por Cecilia ‘La Polla’ Monsalvo, quien vio en el folclor Vallenato la oportunidad de seguir con ‘la parranda’ que engalanaba ya un mermado carnaval.Aquellas primeras coreografías que nacieron en los barrios Cerezo, Cañaguate, La Garita, Centro y Altagracia de Valledupar vieron en el evento más reconocido del vallenato un lugar para seguir cautivando a propios y extraños.\n" +
+                "\n" +
+                "Consuelo Araujo Noguera y 30 amigas protagonizaron el primer desfile de piloneras en 1981 y el desfile creció con los años hasta que la Fundación de la Leyenda Vallenata lo adoptó en 1994 como un concurso oficial en la programación del Festival, siendo La Cacica su principal gestora.\n");
+
+        values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://primeralinea.com.co/danza-el-pilon-todo-sobre-el-baile-mas/");
+        values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.pilonera1);
+        values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.pilonera);
+
+        db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
+    }
+
+    public void GuardarLeyendaFrancisco(){
+        SQLiteDatabase db = GuardarDetalleM.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_DETALLE_M ,4);
+        values.put(CultuCesarContract.TIPO_DETALLE_M,"LEYENDA");
+        values.put(CultuCesarContract.MUNICIPIO_DETALLE_M ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_DETALLE_M ,"LEYENDA FRANCISCO EL HOMBRE");
+        values.put(CultuCesarContract.INFO_DETALLE_M ,"Narra la leyenda que una noche al regresar Francisco después de una parranda de varios días y al ir hacia su pueblo, para distraerse en la soledad de la noche, abrió el acordeón y, sobre su burro, como era usual en aquella época, empezó a interpretar sus melodías; de pronto, al terminar una pieza, surgió de inmediato el repertorio de otro acordeonero, que desafiante trataba de superarlo; de inmediato Francisco marchó hacia él hasta tenerlo a la vista; su competidor, para sorpresa, era Satanás, quien al instante se sentó sobre las raíces de un árbol, abrió su acordeón, y con las notas que le brotaban hizo apagar la luna y todas las estrellas...");
+
+        values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://festivalvallenato.com/mito-leyenda/");
+        values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.franciscoelhombre1);
+        values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.franciscoelhombre2);
+
+        db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
+    }
+
+    public void GuardarLeyendaSirenaHurtado(){
+        SQLiteDatabase db = GuardarDetalleM.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_DETALLE_M ,5);
+        values.put(CultuCesarContract.TIPO_DETALLE_M,"LEYENDA");
+        values.put(CultuCesarContract.MUNICIPIO_DETALLE_M ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_DETALLE_M ,"LEYENDA SIRENA DE HURTADO");
+        values.put(CultuCesarContract.INFO_DETALLE_M ,"Cuentan los abuelos que Rosario Arciniegas, era una niña muy linda y caprichosa, nacida en el barrio «Cañaguate» de Valledupar. Acostumbrada a hacer siempre su voluntad, no hizo caso cuando sus padres, fieles a la tradición, le prohibieron que fuera a bañarse a las profundas aguas del pozo de Hurtado en el río Guatapurí, por ser un Jueves Santo, día consagrado a rememorar la Pasión de Nuestro Señor Jesucristo. Orgullosa y resuelta, Rosario se marchó a escondidas y al llegar al pozo, soltó sus largos cabellos, se quitó la ropa y se lanzó al agua desde las más altas rocas. Eran las dos de la tarde y, no obstante, el cielo se oscureció y cuando Rosario trató de salir de las aguas no pudo...");
+
+        values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://festivalvallenato.com/mito-leyenda/");
+        values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.sirena1);
+        values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.sirena2);
+
+        db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
+    }
+
+    public void GuardarRafaelEscalona(){
+        SQLiteDatabase db = GuardarDetalleM.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_DETALLE_M ,6);
+        values.put(CultuCesarContract.TIPO_DETALLE_M,"JUGLARES");
+        values.put(CultuCesarContract.MUNICIPIO_DETALLE_M ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_DETALLE_M ,"RAFAEL ESCALONA");
+        values.put(CultuCesarContract.INFO_DETALLE_M ,"Rafael Calixto Escalona Martínez conocido como \"El maestro Escalona\", fue un compositor colombiano, considerado uno de los más grandes compositores de la música vallenata.\n" +
+                "\n" +
+                "Sus canciones fueron grabadas por destacados artistas de la música vallenata como  Diomedes Díaz, El Binomio de Oro Rafael Orozco e Israel Romero, Jorge Oñate, Poncho y Emilianito Zuleta, Iván Villazón, y aunque sus composiciones se hicieron más populares en la voz de Carlos Vives, quien primero protagonizó la serie Escalona, basada en la vida del propio Rafael, y luego las grabará en varios álbumes musicales, impulsando la fama de ambos en Colombia y a nivel internacional.");
+
+        values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://es.wikipedia.org/wiki/Rafael_Escalona");
+        values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.escalona1);
+        values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.escalona2);
+
+        db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
+    }
+
+
+    public void GuardarTobiasEnrique(){
+        SQLiteDatabase db = GuardarDetalleM.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_DETALLE_M ,7);
+        values.put(CultuCesarContract.TIPO_DETALLE_M,"JUGLARES");
+        values.put(CultuCesarContract.MUNICIPIO_DETALLE_M ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_DETALLE_M ,"TOBIAS ENRIQUE PUMAREJO");
+        values.put(CultuCesarContract.INFO_DETALLE_M ,"Tobías Enrique Pumarejo Gutiérrez. Compositor e intérprete colombiano de música vallenata. Sin lugar a dudas; es el precursor, el creador del Vallenato romántico- costumbrista, con su estilo poético musical logró concatenar elementos básicos que han servido de referencia para la consagración del Canto Vallenato.\n" +
+                "\n" +
+                "Fue parte del jurado del primer Festival Vallenato, al lado de Rafael Escalona y Gustavo Gutiérrez. Fue también el primer compositor vallenato desligado de los instrumentos, el primer miembro de la sociedad de Valledupar que cantó y compuso este ritmo y a quien le cupo el honor de abrirle las puertas en el Club de Valledupar a este nuevo aire musical.");
+
+        values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://www.ecured.cu/Tob%C3%ADas_Enrique_Pumarejo_Guti%C3%A9rrez");
+        values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.tobiasenriquepumarejo1);
+        values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.tobiasenriquepumarejo2);
+
+        db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
+    }
+
+    public void GuardarCalixto(){
+        SQLiteDatabase db = GuardarDetalleM.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_DETALLE_M ,8);
+        values.put(CultuCesarContract.TIPO_DETALLE_M,"JUGLARES");
+        values.put(CultuCesarContract.MUNICIPIO_DETALLE_M ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_DETALLE_M ,"CALIXTO OCHOA");
+        values.put(CultuCesarContract.INFO_DETALLE_M ,"Calixto de Jesús Ochoa Ocampo (Valencia de Jesús, 14 de agosto de 1934 - Sincelejo, 18 de noviembre de 2015) fue un cantante, compositor y acordeonero colombiano de música vallenata.\n" +
+                "\n" +
+                "A los 19 años se marchó del hogar para recorrer las localidades vecinas haciendo lo que más le agradaba: cantar. De pueblo en pueblo, llegó a Sincelejo en 1956, donde realizó su primera grabación titulada «El lirio rojo» para el desaparecido sello Eco. Esta canción, que tuvo muy buena acogida en toda la Costa, le abrió las puertas de las grandes casas disqueras del país. Discos Fuentes fue la primera en llamarlo y fue artista exclusivo de ésta por más de una década. Tras trece años de trabajar para Discos Fuentes, probó con otras empresas, pero siempre volvió a la compañía con la que tantos triunfos obtuvo.");
+
+        values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://es.wikipedia.org/wiki/Calixto_Ochoa");
+        values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.calistoochoa1);
+        values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.calistoochoa2);
+
+        db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
+    }
+
+
+    public void GuardarLorenzo(){
+        SQLiteDatabase db = GuardarDetalleM.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_DETALLE_M ,9);
+        values.put(CultuCesarContract.TIPO_DETALLE_M,"JUGLARES");
+        values.put(CultuCesarContract.MUNICIPIO_DETALLE_M ,"Valledupar");
+        values.put(CultuCesarContract.NOMBRE_DETALLE_M ,"LORENZO MORALES");
+        values.put(CultuCesarContract.INFO_DETALLE_M ,"Lorenzo Miguel Morales Herrera (n. Guacoche, Magdalena Grande el 19 de junio de 1914 – f. Valledupar, Cesar el 26 de agosto de 2011), conocido como Lorenzo Morales o por su apodo de “Moralito”, fue un músico colombiano, acordeonero y cantautor de música vallenata.\u200B\n" +
+                "\n" +
+                "Es considerado una de las grandes leyendas vallenatas. El Festival de la Leyenda Vallenata de Valledupar lo homenajeó como «rey vitalicio».\u200B\n" +
+                "\n" +
+                "Morales fue con Emiliano Zuleta Baquero el protagonista del más famoso duelo musical de Colombia, el cual fue inmortalizado en la canción “La gota fría” e internacionalizado por el cantante colombiano Carlos Vives y el cantante español Julio Iglesias.\n" +
+                "\n" +
+                "Como respuesta a Zuleta y su canción La gota fría, \"Moralito\" compuso el tema La carta.");
+
+        values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://es.wikipedia.org/wiki/Lorenzo_Morales");
+        values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.lorenzomorales1);
+        values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.lorenzomorales2);
+
+        db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
+    }
+
+
+
 
 
 

@@ -55,6 +55,7 @@ public class CultuCesarContract {
     //CONTRACT MUNUCIPIO DETALLE(JUNGLARES,HISTORIA,LEYENDAS)
     public static String TABLA_DETALLE_M = "detalle";
     public static String CODIGO_DETALLE_M = "codigo";
+    public static String TIPO_DETALLE_M = "tipo";
     public static String MUNICIPIO_DETALLE_M = "municipio";
     public static String NOMBRE_DETALLE_M = "nombreDetalleM";
     public static String INFO_DETALLE_M = "infoGM";
@@ -88,7 +89,7 @@ public class CultuCesarContract {
 
     //CREAR TABLA DETALLE MUNICIPIO
     public static final  String CREAR_TABLA_DETALLE_M="CREATE TABLE" +
-            " " + TABLA_DETALLE_M + " (" +CODIGO_DETALLE_M+" "+
-            "INTEGER,"+ MUNICIPIO_DETALLE_M+" " +" TEXT," +  NOMBRE_DETALLE_M+" " +" TEXT,"+ INFO_DETALLE_M+" " +" TEXT,"+ DESCRIPCION_DETALLE_M+" " +" TEXT,"
-            + FOTO_DETALLE_M+" " +" INTEGER,"+IMG_DETALLE_M+" "+ "INTEGER,)";
+            " " + TABLA_DETALLE_M + " (" +CODIGO_DETALLE_M+" "+ "INTEGER,"+ TIPO_DETALLE_M +" " +" TEXT," +
+            MUNICIPIO_DETALLE_M+" " +" TEXT," +  NOMBRE_DETALLE_M+" " +" TEXT,"+ INFO_DETALLE_M+" " +" TEXT,"+ DESCRIPCION_DETALLE_M+" " +" TEXT,"
+            + FOTO_DETALLE_M+" " +" INTEGER,"+IMG_DETALLE_M+" "+ "INTEGER)";
 }

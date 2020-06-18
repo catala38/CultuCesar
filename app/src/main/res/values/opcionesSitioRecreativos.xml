@@ -2,7 +2,7 @@
 <resources>
    <string-array name="comboTipoSitioR" >
        <item>SELECCIONAR</item>
-       <item>BALNEAREOS</item>
+       <item>BALNEARIOS</item>
        <item>CENTRO RECREACIONALES</item>
        <item>PARQUES</item>
    </string-array>

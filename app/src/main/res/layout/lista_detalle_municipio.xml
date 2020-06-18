@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="400dp"
+        android:layout_height="164dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imagen_detalleMlist"
+            android:layout_width="175dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/nombredetalleMlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="47dp"
+            android:layout_toEndOf="@+id/imagen_detalleMlist"
+            android:layout_toRightOf="@+id/imagen_detalleMlist"
+            android:gravity="center"
+            android:text="Nombre del detalle"
+            android:textSize="18sp"
+            android:textStyle="bold"></TextView>
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

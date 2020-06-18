@@ -38,7 +38,7 @@ public class DetalleSitioRecreativoFragment extends Fragment {
         viewFlipperSitioRecreativo = view.findViewById(R.id.flipperSitioR);
 
         Bundle objetoSitioR = getArguments();
-        SitioRecreativoVo sitioRecreativoVo = null;;
+        SitioRecreativoVo sitioRecreativoVo = null;
         if(objetoSitioR !=null){
             sitioRecreativoVo = (SitioRecreativoVo) objetoSitioR.getSerializable("objeto");
             imagenes  = new int[]{Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS1Recreativo())), Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS2Recreativo())), Integer.parseInt(String.valueOf(sitioRecreativoVo.getImageDetalleS3Recreativo()))};

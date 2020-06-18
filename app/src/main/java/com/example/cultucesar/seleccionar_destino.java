@@ -35,7 +35,7 @@ public class seleccionar_destino extends AppCompatActivity {
         botonManaure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                destino = "Manaure";
+                destino = "Pueblo bello";
                 Intent intent = new Intent(seleccionar_destino.this, MainActivity.class); //ELEGIMOS LA ACTIVITY QUE QUEREMOS EJECUTAR
                 startActivity(intent);
                 finish();

@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="MANAURE"
+        android:text="PUEBLO BELLO"
         android:layout_marginRight="70dp"
         android:layout_marginLeft="60dp"
         android:textSize="25sp"
@@ -68,7 +68,7 @@
         android:layout_marginRight="70dp"
         android:layout_marginLeft="80dp"
         android:scaleType="centerCrop"
-        android:background="@drawable/btnmanaure1"/>
+        android:background="@drawable/pueblobello"/>
 
     <TextView
         android:layout_width="match_parent"

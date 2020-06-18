@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="comboDetalleM" >
+        <item>SELECCIONAR</item>
+        <item>MUSICA AUTOCTONA</item>
+        <item>HISTORIA</item>
+        <item>LEYENDA</item>
+        <item>JUGLARES</item>
+    </string-array>
+
+</resources>
