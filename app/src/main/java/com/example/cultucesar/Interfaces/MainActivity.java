@@ -257,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void CargarEventos(){
         festivalVallenato();
         festivalDeLaQuinta();
+        festivalDeLaVirgen();
     }
 
     public void festivalVallenato(){
@@ -274,7 +275,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         db.insert(CultuCesarContract.TABLA_EVENTO,null,values);
     }
-
     public void festivalDeLaQuinta(){
         SQLiteDatabase db = GuardarEvento.getWritableDatabase();
         ContentValues values =  new ContentValues();
@@ -291,8 +291,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         db.insert(CultuCesarContract.TABLA_EVENTO,null,values);
     }
 
+    public void festivalDeLaVirgen(){
+        SQLiteDatabase db = GuardarEvento.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_EVENTO,3);
+        values.put(CultuCesarContract.MUNICIPIO_EVENTO,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_EVENTO,"Fiestas patronales de la Virgen del Carmen");
+        values.put(CultuCesarContract.INFO_EVENTO,"Disfruta la excelente programación de las fiestas patronales de la Virgen del Carmen y el festival del agua, el café y las artesanías arhuacas desde13 de julio al 16 de julio en el Municipio de Pueblo Bello, un lugar de espiritualidad, cultura y naturaleza.");
+        values.put(CultuCesarContract.FECHA_EVENTO,"Del 13/07/2020 al 16/07/2020");
+        values.put(CultuCesarContract.VALOR_ESTIMADO,"Desde $0 hasta $50.000");
+        values.put(CultuCesarContract.TELEFONO,"No disponible");
+        values.put(CultuCesarContract.WEB,"https://www.agendavallenata.com/eventer/fiestas-patronales-de-la-virgen-del-carmen-y-el-festival-del-agua-el-cafe-y-las-artesanias-arhuacas/");
+        values.put(CultuCesarContract.FOTO_EVENTO,R.drawable.pueblobelloevento1);
 
-
+        db.insert(CultuCesarContract.TABLA_EVENTO,null,values);
+    }
 
     //------- Cargar Sitios de interes ----------
 
