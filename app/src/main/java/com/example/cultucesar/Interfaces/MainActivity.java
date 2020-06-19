@@ -315,16 +315,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         GuardarHotelSicarare();
         GuardarHotelSonesta();
         GuardarHotelReyReyes();
+        GuardarHotelMares();
+        GuardarHotelHelenita();
+        GuardarHotelHeliconias();
         //RESTAURANTES
         GuardarRestauranteCH();
         GuardarRestauranteVaradero();
         GuardarRestauranteMarianamen();
         GuardarRestauranteMontacarga();
+
+        GuardarRestaurantePalmas();
+        GuardarRestauranteMiPuebloBello();
         //BARES
         GuardarTierraCantores();
         GuardarPatioBar();
         GuardarTlonBar();
         GuardarPalenke();
+        GuardarESTACOHELADERIA();
     }
       /////////////////////// HOTELES ///////////////////////////////////////////////////
     public void GuardarHotelBoutique(){
@@ -353,7 +360,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarHotelSicarare(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,1);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,2);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"HOTEL");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"HOTEL SICARARE");
@@ -374,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarHotelSonesta(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,1);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,3);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"HOTEL");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"SONESTA HOTEL VALLEDUPAR");
@@ -401,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarHotelReyReyes(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,1);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,4);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"HOTEL");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"HOTEL REY DE REYES");
@@ -418,12 +425,73 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    public void GuardarHotelMares(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,5);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"HOTEL");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"Mares Hotel");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"El un hotel sencillo en el centro del poblado, con habitaciones pequeñas y grandes.En la parte trasera tienen espacio techado para realizar eventos o reuniones, con mesas y sillas del propio hotel. Además de una cocina.\n" +
+                "Algo especial con las hamacas en la parte de atrás del segundo piso, con una vista libre de las montañas de la Sierra Nevada.");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $50,000 hasta $120,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+573184587756");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.facebook.com/people/Mares-Hotel-Pueblo-Bello/100009079136045");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.pueblobellomareshotel1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.pueblobellomareshotel2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.pueblobellomareshotel3);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.pueblobellomareshotel1);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+    public void GuardarHotelHelenita(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,6);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"HOTEL");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"La Helenita");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"Excelente lugar, propicio para descansar y disfrutar de la naturaleza, adicional dentro de la Finca cuentan con un recorrido por un río que te lleva hacia una cascada y subir hasta un peñon donde tienes una panorámica de Pueblo Bello y si está despejado hasta puedes apreciar el nevado de Santa Marta.");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $50,000 hasta $150,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+573154091279");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.facebook.com/fincahostal.lahelenita");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.pueblobellohelenita1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.pueblobellohelenita2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.pueblobellohelenita3);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.pueblobellohelenita1);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+
+    public void GuardarHotelHeliconias(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,7);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"HOTEL");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"Hotel Campestre las Heliconias");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"Ven a pueblo bello y disfrutar de esta hermosa casa campestre donde se brinda servicios como hospedaje ,restaurante piscinas parqueadero bebidas  todo al alcance de tu presupuesto .Ven para tener el gusto de atenderte");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $40,000 hasta $170,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"313 5634829");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.facebook.com/casacampolasheliconias/");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.pueblobelloheliconias);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.pueblobelloheliconias2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.pueblobelloheliconias);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.pueblobelloheliconias3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+
+
 
     /////////////////// RESTAURANTES ////////////////////////////////////////////
     public void GuardarRestauranteCH(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,2);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,8);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"RESTAURANTE");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"RESTAURANTE COMPAE CHIPUCO");
@@ -449,7 +517,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarRestauranteVaradero(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,2);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,9);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"RESTAURANTE");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"RESTAURANTE VARADERO");
@@ -469,7 +537,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarRestauranteMarianamen(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,2);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,10);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"RESTAURANTE");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"RESTAURANTE MARIA NAMEN");
@@ -489,7 +557,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarRestauranteMontacarga(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,2);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,11);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"RESTAURANTE");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"RESTAURANTE MONTACARGA");
@@ -508,13 +576,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    public void GuardarRestaurantePalmas(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,12);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"RESTAURANTE");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"Restaurante Las Palmas");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"Excelente sitio para almorzar y disfrutar en familia ubicado en la  CALLE 9 # 12-12 AV PPAL 201008 Pueblo Bello");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $10,000 hasta $25,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"+573135126183");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.facebook.com/pages/category/Restaurant/Restaurante-Las-Palmas-Pueblo-Bello-1649527845149751/");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.pueblobellorestaurantelaspalmas1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.pueblobellorestaurantelaspalmas2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.pueblobellorestaurantelaspalmas3);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.pueblobellorestaurantelaspalmas1);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+
+    public void GuardarRestauranteMiPuebloBello(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,13);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"RESTAURANTE");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"Restaurante Mi Pueblo Bello");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"Comidas corrientes y ala carta, platos especiales y refrigerios para eventos, Comodas rápidas y todo lo relacionado para su paladar #PuebloBelloCesar");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $10,000 hasta $35,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"3135233614");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://www.facebook.com/pages/category/Chicken-Joint/Restaurante-Mi-Pueblo-Bello-2043287632585231/");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.pueblobellorestaurante1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES ,R.drawable.pueblobellorestaurante2);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES ,R.drawable.pueblobellorestaurante1);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES ,R.drawable.pueblobellorestaurante2);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+
 
 
     /////////////////// BARES ////////////////////////////////////////////
     public void GuardarTierraCantores(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,3);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,9);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"TIERRA DE CANTORES");
@@ -537,7 +645,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarPatioBar(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,3);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,10);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"EL PATIO BAR");
@@ -558,7 +666,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarTlonBar(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,3);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,11);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"Tlön-Bar");
@@ -579,7 +687,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarPalenke(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,3);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,12);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"PALENKE");
@@ -598,7 +706,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
     }
 
+    public void GuardarESTACOHELADERIA(){
+        SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,12);
+        values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"LA OFICINA ESTACO HELADERIA");
+        values.put(CultuCesarContract.INFO_SITIO_INTERES,"Excelente lugar para pasar un rato con amigos y familia.");
+        values.put(CultuCesarContract.VALOR_RANGO_SITIO_INTERES,"Desde $10,000 hasta $100,000");
+        values.put(CultuCesarContract.TELEFONO_SITIO_INTERES,"318 6393829");
+        values.put(CultuCesarContract.WEB_SITIO_INTERES ,"https://la-oficina-estaco-heladeria.negocio.site/");
+        values.put(CultuCesarContract.FOTO_SITIO_INTERES ,R.drawable.pueblobellooficinaestanco);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO1_INTERES,R.drawable.pueblobellooficinaestanco);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO2_INTERES  ,R.drawable.pueblobellooficinaestanco);
+        values.put(CultuCesarContract.IMG_DETALLE_SITIO3_INTERES  ,R.drawable.pueblobellooficinaestanco);
 
+        db.insert(CultuCesarContract.TABLA_SITIO_INTERES,null,values);
+    }
+
+
+
+    
     //----------------- CARGAR SITIOS RECREATIVOS --------------------------
     public void GuardarSitiosRecreativos(){
         ////BALNEAREOS////
