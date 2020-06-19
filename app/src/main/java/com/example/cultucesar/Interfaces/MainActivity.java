@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import com.example.cultucesar.Fragments.SitioInteres.SitioInteresFragment;
 import com.example.cultucesar.Fragments.SitioRecreativo.DetalleSitioRecreativoFragment;
 import com.example.cultucesar.Fragments.SitioRecreativo.SitioRecreativoFragment;
 import com.example.cultucesar.R;
+import com.example.cultucesar.seleccionar_destino;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, iComunicaFragments{
@@ -169,11 +171,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.replace(R.id.container_fragment, new DetalleMunicipioFragment());
             fragmentTransaction.commit();
         }
+        if(menuItem.getItemId() == R.id.municipio) {
+            Intent intent = new Intent(getApplicationContext(), seleccionar_destino.class);
+            startActivity(intent);
+        }
         return false;
     }
 
 
-   //----ENVIO A INTERFACES DETALLE--------------
+
+    //----ENVIO A INTERFACES DETALLE--------------
 
 
     @Override
@@ -622,7 +629,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarTierraCantores(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,9);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,14);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"TIERRA DE CANTORES");
@@ -645,7 +652,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarPatioBar(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,10);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,15);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"EL PATIO BAR");
@@ -666,7 +673,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarTlonBar(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,11);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,16);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"Tlön-Bar");
@@ -687,7 +694,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarPalenke(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,12);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,17);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"PALENKE");
@@ -709,7 +716,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarESTACOHELADERIA(){
         SQLiteDatabase db = GuardarSitioInteres.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,12);
+        values.put(CultuCesarContract.CODIGO_SITIO_INTERES,18);
         values.put(CultuCesarContract.TIPO_SITIO_INTERES,"BARES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_INTERES,"Pueblo bello");
         values.put(CultuCesarContract.NOMBRE_SITIO_INTERES,"LA OFICINA ESTACO HELADERIA");
@@ -727,19 +734,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-    
+
     //----------------- CARGAR SITIOS RECREATIVOS --------------------------
     public void GuardarSitiosRecreativos(){
         ////BALNEAREOS////
         GuardarRioGuatapuri();
+        GuardarRepresa();
+        GuardarTranquilandia();
         ////CENTRO RECREACIONALES/////
         GuardarPedregosa();
         GuardarEscuelaAmbiental();
+        GuardarInterpretacionArhuaca();
+        GuardarVillaSthefany();
         ///PARQUES/////
         GuardarProvincia();
         GuardarCristoRey();
         GuardarParqueAlgarrobillos();
         GuardarParqueElViajero();
+        GuardarParqueCentral();
+        GuardarMirador();
 
     }
 
@@ -759,11 +772,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
     }
+
+
+    public void GuardarRepresa(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,2);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"BALNEARIOS");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"LA REPRESA");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"Un excelente lugar para disfrutar en familia y amigos.");
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.com/maps/place/La+represa+Balneario+Pueblo+Bello/@10.4509729,-73.5828283,17.5z/data=!4m5!3m4!1s0x8ef54f9d6810954d:0x3731ab3560fa37b1!8m2!3d10.4509323!4d-73.5814892");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.pueblobellorepresa1);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.pueblobellorepresa2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.pueblobellorepresa3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
+
+    public void GuardarTranquilandia(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,3);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"BALNEARIOS");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"Cascada La Tranquilidad");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"Naturaleza virgen, paisajes increíbles.");
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.es/maps/place/Cascada+La+Tranquilidad/@10.4324974,-73.6158744,15z/data=!4m8!1m2!2m1!1sbalnearios+en+Pueblo+Bello,+Cesar!3m4!1s0x0:0xfa8fc4eeb63ca5f9!8m2!3d10.4324981!4d-73.6158738");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.pueblobelloeventotranquilandia1);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.pueblobelloeventotranquilandia2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.pueblobelloeventotranquilandia1);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
+
+
+
+
+
     ///////////////////CENTRO RECREACIONALES/////////////////////
     public void GuardarPedregosa(){
         SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,2);
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,4);
         values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"CENTRO RECREACIONALES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"CENTRO RECREACIONAL LA PEDREGOSA");
@@ -781,7 +834,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarEscuelaAmbiental(){
         SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,3);
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,5);
         values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"CENTRO RECREACIONALES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"ESCUELA AMBIENTAL");
@@ -798,11 +851,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
     }
 
+
+    public void GuardarInterpretacionArhuaca(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,6);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"CENTRO RECREACIONALES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"Centro de Interpretacion Arhuaca");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"En el municipio de Pueblo Bello, Comfacesar ofrece el Centro de Interpretación  de la Cultura Arhuaca, una réplica del pueblo ancestral de Nabusimake, un lugar ideal para la reflexión. Sus cabañas trasmiten calidez y comodidad; Su arquitectura, las manifestaciones culturales que hacen de este, un lugar perfecto para la desconexión, trascendencia y la autenticidad, permitiendo un encuentro con la etnia indígena y propiciando un espacio para el reencuentro consigo mismo a 16°C.");
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.es/maps/place/Centro+de+Interpretacion+Arhuaca/@10.4156883,-73.5938094,16z/data=!4m8!1m2!2m1!1scentro+recreacionales+pueblo+bello!3m4!1s0x8ef54ef3e1722027:0x71bd95a7f2e022d7!8m2!3d10.4196685!4d-73.5886332");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.pueblobelloarhuaca);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.pueblobelloarhuaca2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.pueblobelloarhuaca3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
+
+    public void GuardarVillaSthefany(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,7);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"CENTRO RECREACIONALES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"Centro Recreacional VillaSthefany");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"El Villasthefany se encuentra en Pueblo Bello y dispone de restaurante, bar y jardín. Se ofrece aparcamiento privado por un suplemento.\n" +
+                "\n" +
+                "Todos los días se sirve un desayuno a la carta en el hotel.\n" +
+                "\n" +
+                "El aeropuerto más cercano es el aeropuerto Alfonso López Pumarejo, situado a 55 km del Villasthefany.");
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.es/maps/place/Centro+Recreacional+VillaSthefany/@10.4116923,-73.5924195,17z/data=!4m18!1m9!3m8!1s0x8ef54e58c12be273:0x5b8ffcedcabeceee!2sCentro+Recreacional+VillaSthefany!5m2!4m1!1i2!8m2!3d10.411687!4d-73.5902308!3m7!1s0x8ef54e58c12be273:0x5b8ffcedcabeceee!5m2!4m1!1i2!8m2!3d10.411687!4d-73.5902308");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.pueblobellovillastefany1);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.pueblobellovillastefany2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.pueblobellovillastefany3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
+
+
+
+
     ///////////PARQUES/////
     public void GuardarProvincia(){
         SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,4);
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,8);
         values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"LA PROVINCIA");
@@ -823,7 +918,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarCristoRey(){
         SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,4);
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,9);
         values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"CRISTO REY");
@@ -842,7 +937,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarParqueAlgarrobillos(){
         SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,4);
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,10);
         values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"PARQUE DE LOS ALGARROBILLOS");
@@ -862,7 +957,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void GuardarParqueElViajero(){
         SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
         ContentValues values =  new ContentValues();
-        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,4);
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,11);
         values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
         values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Valledupar");
         values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"PARQUE EL VIAJERO");
@@ -878,6 +973,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    public void GuardarParqueCentral(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,12);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"Parque Central");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"Excelente lugar para pasar un rato agradable");
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.es/maps/place/Parque+Central/@10.4263557,-73.5843327,14.5z/data=!4m8!1m2!2m1!1sparques+en+Pueblo+Bello,+Cesar!3m4!1s0x0:0xe8c13fd06cb0d64!8m2!3d10.4163829!4d-73.5851651");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.pueblobelloparquecentral);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.pueblobelloparquecentral2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.pueblobelloparquecentral3);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
+    public void GuardarMirador(){
+        SQLiteDatabase db = GuardarSitioRecreativo.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_SITIO_RECREATIVO,13);
+        values.put(CultuCesarContract.TIPO_SITIO_RECREATIVO,"PARQUES");
+        values.put(CultuCesarContract.MUNICIPIO_SITIO_RECREATIVO,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_SITIO_RECREATIVO,"Mirador");
+        values.put(CultuCesarContract.INFO_SITIO_RECREATIVO,"Muy lindo Mirador en la entrada de Pueblo Bello,  lindas vista de las montañas al aledañas en las tardes,  buena brisa y clima para pasar un buen rato.\n");
+        values.put(CultuCesarContract.DETALLE_SITIO_RECREATIVO,"https://www.google.es/maps/place/Mirador/@10.4272659,-73.5870031,15.5z/data=!4m8!1m2!2m1!1sparques+en+Pueblo+Bello,+Cesar!3m4!1s0x0:0x7cae57dd0d485077!8m2!3d10.423574!4d-73.5777703");
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO1,R.drawable.pueblobelloparqueelmirador1);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO2,R.drawable.pueblobelloparqueelmirador2);
+        values.put(CultuCesarContract.IMG_DETALLE_RECREATIVO3,R.drawable.pueblobelloparqueelmirador1);
+
+        db.insert(CultuCesarContract.TABLA_SITIO_RECREATIVO,null,values);
+    }
+
+
+
+
     //---------CARGAR ACTIVIDADES-----
 
     public void GuardarActividades(){
@@ -885,6 +1015,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         GuardarCityTour();
         GuardarCalleGrande();
         GuardarElCuartico();
+        GuardarJardinBotanico();
+        GuardarNabusimake();
     }
     public void GuardarCaminata(){
         SQLiteDatabase db = GuardarActividades.getWritableDatabase();
@@ -948,10 +1080,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         db.insert(CultuCesarContract.TABLA_ACTIVIDAD,null,values);
     }
 
+
+    public void GuardarJardinBotanico(){
+        SQLiteDatabase db = GuardarActividades.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_ACTIVIDAD ,5);
+        values.put(CultuCesarContract.MUNICIPIO_ACTIVIDAD ,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_ACTIVIDAD ,"Jardin botanico Y Escuela De Saberes Busintana");
+        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Quienes llegan a Pueblo Bello, dos horas al occidente de Valledupar, encuentran tranquilidad en el jardín botánico Buzintana, un sitio donde la comunidad Arhuaca ha vertido sus conocimientos sobre la flora medicinal, ornamental y alimenticia de la región. Aquí se aprende sobre ecología y se puede conocer cómo se produce miel de abejas pura, sin elementos químicos.");
+        values.put(CultuCesarContract.DETALLE_ACTIVIDAD ,"https://www.google.com/maps/place/Jardin+botanico+Y+Escuela+De+Saberes+Busintana/@10.4209984,-73.5893236,17z/data=!3m1!4b1!4m5!3m4!1s0x8ef54ef3b4447b3f:0xcca6e101cbc85e2c!8m2!3d10.4209984!4d-73.5871349");
+        values.put(CultuCesarContract.FOTO_ACTIVIDAD ,R.drawable.pueblobellobotanico1);
+        values.put(CultuCesarContract.IMG_DETALLE_ACTIVIDAD ,R.drawable.pueblobellobotanico2);
+
+        db.insert(CultuCesarContract.TABLA_ACTIVIDAD,null,values);
+    }
+
+    public void GuardarNabusimake(){
+        SQLiteDatabase db = GuardarActividades.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_ACTIVIDAD ,6);
+        values.put(CultuCesarContract.MUNICIPIO_ACTIVIDAD ,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_ACTIVIDAD ,"VISITAR NABUSIMAKE");
+        values.put(CultuCesarContract.INFO_ACTIVIDAD ,"Nabusímake  se encuentra escondido al interior de la Sierra Nevada de Santa Marta y es la capital espiritual del grupo indígena (Arahuacos). En su lengua, Nabusímake significa Tierra donde el sol nace.\n" +
+                "\n" +
+                "Llegar a Nabusímake es una verdadera  aventura,no se puede acceder  sino en burro o a pie; el camino es espectacular y está decorado con flores  como las  cayennes,  las hydrangeas  y las dalias.\n" +
+                "\n" +
+                "Podrá bañarse en el agua fría y cristalina del rio San Sebastián; cuando llegue a Nabusímake sentirá la espiritualidad del pueblo, que está protegido por las montañas, podrá renovar su cuerpo  y su alma con energías positivas en aquel paraíso.");
+        values.put(CultuCesarContract.DETALLE_ACTIVIDAD ,"https://www.google.com/maps/place/Nabusimake,+Pueblo+Bello+-+Cesar/@10.56026,-73.59398,17z/data=!4m12!1m6!3m5!1s0x8ef5377b0a191cb9:0x209b73a2d668812!2sNabusimake,+Pueblo+Bello+-+Cesar!8m2!3d10.5602888!4d-73.5944202!3m4!1s0x8ef5377b0a191cb9:0x209b73a2d668812!8m2!3d10.5602888!4d-73.5944202");
+        values.put(CultuCesarContract.FOTO_ACTIVIDAD ,R.drawable.pueblobellonabusimake);
+        values.put(CultuCesarContract.IMG_DETALLE_ACTIVIDAD ,R.drawable.pueblobellonabusimake2);
+
+        db.insert(CultuCesarContract.TABLA_ACTIVIDAD,null,values);
+    }
+
+
+
+
+
+
+
     //---------Guardar detalle municipios------------
     public void GuardarDetallesMunicipio(){
         //--MUSICA--
         GuardarVallenato();
+        GuardarVallenatoP();
         //--HISTORIAS--
         GuardarHisotiraFestivalVallenato();
         GuardarHisotiraPiloneras();
@@ -1131,6 +1303,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://es.wikipedia.org/wiki/Lorenzo_Morales");
         values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.lorenzomorales1);
         values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.lorenzomorales2);
+
+        db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
+    }
+
+
+
+    public void GuardarVallenatoP(){
+        SQLiteDatabase db = GuardarDetalleM.getWritableDatabase();
+        ContentValues values =  new ContentValues();
+        values.put(CultuCesarContract.CODIGO_DETALLE_M ,1);
+        values.put(CultuCesarContract.TIPO_DETALLE_M,"MUSICA AUTOCTONA");
+        values.put(CultuCesarContract.MUNICIPIO_DETALLE_M ,"Pueblo bello");
+        values.put(CultuCesarContract.NOMBRE_DETALLE_M ,"El VALLENATO");
+        values.put(CultuCesarContract.INFO_DETALLE_M ,"Este género músical nace en Valledupar, donde yacían tribus indígenas, incluidas las Chimilas y Tupes, gobernadas por un poderoso jefe conocido como el Cacique Upar. Ahí es donde la ciudad recibe su nombre (Valle de Upar) y vallenato, a su vez, significa “nacido en el valle”.\n" +
+                "\n" +
+                "Se dice que los agricultores de la región heredaron las tradiciones de juglares españoles y africanos, cantando y tocando sus instrumentos mientras viajaban de ciudad en ciudad con sus vacas, compartiendo noticias y mensajes. Finalmente, los instrumentos africanos e indígenas, como las flautas de gaita , la guacharaca y los tambores, se unieron al acordeón europeo y así es como nace el vallenato..");
+
+        values.put(CultuCesarContract.DESCRIPCION_DETALLE_M ,"https://www.colombia.co/cultura-colombiana/musica/valledupar-la-cuna-del-vallenato/");
+        values.put(CultuCesarContract.FOTO_DETALLE_M ,R.drawable.festivalvallenato1);
+        values.put(CultuCesarContract.IMG_DETALLE_M ,R.drawable.vallenato1);
 
         db.insert(CultuCesarContract.TABLA_DETALLE_M,null,values);
     }
